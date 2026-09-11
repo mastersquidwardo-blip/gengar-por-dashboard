@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>POR Gengar #050 — Blister Cosmos Predictive Path</title>
+  <meta name="description" content="Most-likely valuation path for Perfect Order Gengar blister cosmos PSA 10 and PCG Pristine 10" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <header class="top">
+    <div class="brand">
+      <span class="ghost">◈</span>
+      <div>
+        <p class="eyebrow">Gengar 050 · Perfect Order</p>
+        <h1>Blister cosmos predictive path</h1>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="pill">Blister only</span>
+      <span class="pill warn">GS / EB void</span>
+      <span class="pill muted" id="asOf">as of —</span>
+    </div>
+  </header>
+
+  <section class="callout void">
+    <strong>GameStop / EB Games stamped ~$700–825 PSA 10 is VOID</strong>
+    for this target. Those price a stamp exclusivity channel, not blister pack cosmos.
+  </section>
+
+  <section class="kpis" id="kpis">
+    <article class="kpi primary">
+      <p class="label">Most likely PSA 10</p>
+      <p class="value" id="kpiPsa">—</p>
+      <p class="sub" id="kpiPsaSub">immature launch path</p>
+    </article>
+    <article class="kpi">
+      <p class="label">Most likely PCG Pristine 10</p>
+      <p class="value" id="kpiPcg">—</p>
+      <p class="sub" id="kpiPcgSub">k=0.70 · +15% FTM</p>
+    </article>
+    <article class="kpi">
+      <p class="label">Maturity clip</p>
+      <p class="value" id="kpiMat">—</p>
+      <p class="sub">POR RH/H vs 151 mature</p>
+    </article>
+    <article class="kpi">
+      <p class="label">Confidence</p>
+      <p class="value small" id="kpiConf">—</p>
+      <p class="sub">n=0 blister PSA 10 solds</p>
+    </article>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Most likely path</h2>
+      <p>Immature launch → RH matures → full 151-style cosmos premium. Dual series for PSA 10 vs PCG Pristine.</p>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="pathChart" height="120"></canvas>
+    </div>
+    <div class="legend-note" id="pathNote"></div>
+  </section>
+
+  <div class="grid-2">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>PSA 10 scenario ladder</h2>
+        <p>Extrapolations only — no blister cosmos PSA 10 comps yet.</p>
+      </div>
+      <div class="chart-wrap short">
+        <canvas id="psaLadder"></canvas>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="panel-head">
+        <h2>PCG scenario matrix</h2>
+        <p>Immature CGCP blend × k_pcg × (1+ftm)</p>
+      </div>
+      <div class="table-wrap">
+        <table id="pcgMatrix">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>151 → POR bridge</h2>
+      <p>Weighted stack and maturity-clipped cosmos premium.</p>
+    </div>
+    <div class="bridge" id="bridge"></div>
+    <div class="formula" id="formula"></div>
+  </section>
+
+  <div class="grid-2">
+    <section class="panel">
+      <div class="panel-head"><h2>Assumptions</h2></div>
+      <ul class="bullets" id="assumptions"></ul>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h2>What invalidates</h2></div>
+      <ul class="bullets danger" id="invalidators"></ul>
+    </section>
+  </div>
+
+  <footer class="foot">
+    <p>Model JSON: <code>data/por-blister-pcg-model.json</code> · Built for Karthik · Not financial advice</p>
+  </footer>
+</body>
+</html>
