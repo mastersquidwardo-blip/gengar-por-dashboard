@@ -1,0 +1,237 @@
+{
+  "as_of": "2026-09-10",
+  "target": "POR Gengar #050/088 blister cosmos holo only \u2014 PCG Pristine 10 (9.5/10/10/10)",
+  "exclusion": "ALL GameStop / EB Games stamped comps VOID for blister target",
+  "void_note": "Prior ~$700\u2013825 GameStop/EB exclusive PSA10 cluster is VOID for blister cosmos. Do not use as blister comps.",
+  "flags": {
+    "cgc_pristine_151_cosmos": "WEAK \u2014 PriceCharting estimate $240; no hard sold comps on PC page",
+    "psa10_blister_cosmos_POR": "NONE \u2014 no direct comps; all PSA10_C_POR are extrapolations",
+    "cgcP_H_POR": "thin guide $69",
+    "grade9_blister_watch": "PC ~$104 \u2014 watch GameStop contamination in grade 9 tabs"
+  },
+  "inputs": {
+    "151": {
+      "psa10_H": 250.0,
+      "psa10_RH_mature": 729.06,
+      "psa10_C": 1342.5,
+      "raw_H": 4.25,
+      "raw_C": 28.0,
+      "cgcP_H_guide": 399.87,
+      "cgcP_H_sold_credible_median": 400,
+      "cgcP_H_used": 399.87,
+      "cgc_gem_C": 133.5,
+      "cgcP_C_estimate": 240.0,
+      "gem_rates": {
+        "H": 0.237,
+        "RH": 0.179,
+        "C": 0.106
+      },
+      "ratios_stated": {
+        "RH_over_Reg": 2.916,
+        "Cos_over_Reg": 5.37,
+        "Cos_over_RH": 1.841
+      }
+    },
+    "POR": {
+      "raw_H": 1.54,
+      "raw_RH": 2.0,
+      "raw_C_blister": 13.05,
+      "psa10_H_guide": 240.0,
+      "psa10_H_sales_range": [
+        178.0,
+        355.0
+      ],
+      "psa10_RH_guide": 296.21,
+      "psa10_RH_sales_range": [
+        255.0,
+        500.0
+      ],
+      "cgcP_H_guide": 69.0,
+      "cgcP_RH_sold": 225.0,
+      "psa10_C_blister": null,
+      "grade8_blister": 81.0,
+      "grade9_pc_approx": 104.0
+    },
+    "blend_weights_cgcp": {
+      "rawpath": 0.4,
+      "from_alpha": 0.35,
+      "from_psa_ratio": 0.25
+    },
+    "k_pcg_grid": {
+      "low": 0.55,
+      "base": 0.7,
+      "high": 0.85
+    },
+    "ftm_grid": {
+      "none": 0.0,
+      "base": 0.15,
+      "aggressive": 0.3
+    }
+  },
+  "weights": {
+    "w_inv": {
+      "H": 0.2193,
+      "RH": 0.2904,
+      "C": 0.4903
+    },
+    "w_eq": {
+      "H": 0.3333,
+      "RH": 0.3333,
+      "C": 0.3333
+    },
+    "w_inv_HR": {
+      "H": 0.4303,
+      "RH": 0.5697
+    },
+    "note": "w_inv \u221d 1/gem_rate (harder gems weigh more)"
+  },
+  "derived": {
+    "beta_Cos_over_H": 5.37,
+    "gamma_Cos_over_RH": 1.841,
+    "beta_exact": 5.37,
+    "gamma_exact": 1.8414,
+    "m_raw_cgcP_151C": 8.5714,
+    "m_raw_psa_151C_sales": 47.9464,
+    "m_raw_psa_151C_guide": 49.4643,
+    "m_raw_cgcGem_151C": 4.7679,
+    "ratio_cgcP_over_psa_C_151": 0.1788,
+    "alpha_H_only_151": 1.5995,
+    "alpha_C_only_151_ESTIMATE": 0.1788,
+    "alpha_inv_HC_151_includes_weak_C": 0.288,
+    "alpha_eq_HC_151_includes_weak_C": 0.4018,
+    "alpha_stack_reg_rh_inv_POR": 0.5804,
+    "alpha_stack_reg_rh_eq_POR": 0.5483,
+    "alpha_stack_reg_rh_primary": 0.5804,
+    "alpha_note": "\u03b1_stack_reg_rh from POR H+RH real CGCP (151 RH CGCP unavailable). Inv-gem primary.",
+    "maturity_raw": 0.4233,
+    "maturity_clipped": 0.4233,
+    "POR_RH_over_H": 1.2342
+  },
+  "psa10_C_POR_extrapolations": {
+    "via_H": 1288.8,
+    "via_RH": 545.32,
+    "geo_mature": 838.34,
+    "immature": 683.91,
+    "maturity_raw": 0.42,
+    "maturity_clipped": 0.42
+  },
+  "cgcp_C_POR": {
+    "immature": {
+      "rawpath": 111.86,
+      "from_psa_ratio": 122.26,
+      "from_alpha_inv": 396.92,
+      "from_alpha_eq": 374.98,
+      "blend_inv": 214.23,
+      "blend_eq_sens": 206.55
+    },
+    "mature_geo": {
+      "rawpath": 111.86,
+      "from_psa_ratio": 149.87,
+      "from_alpha_inv": 486.55,
+      "from_alpha_eq": 459.65,
+      "blend_inv": 252.5,
+      "blend_eq_sens": 243.09
+    },
+    "via_H": {
+      "rawpath": 111.86,
+      "from_psa_ratio": 230.4,
+      "from_alpha_inv": 747.98,
+      "from_alpha_eq": 706.64,
+      "blend_inv": 364.14,
+      "blend_eq_sens": 349.67
+    },
+    "via_RH": {
+      "rawpath": 111.86,
+      "from_psa_ratio": 97.49,
+      "from_alpha_inv": 316.49,
+      "from_alpha_eq": 299.0,
+      "blend_inv": 179.89,
+      "blend_eq_sens": 173.76
+    },
+    "blend_formula": "0.40*rawpath + 0.35*from_\u03b1(inv) + 0.25*from_psa_ratio"
+  },
+  "psa_equivalent_launch_band": {
+    "immature": 683.91,
+    "mature_geo": 838.34,
+    "via_H": 1288.8,
+    "via_RH": 545.32,
+    "note": "No direct blister cosmos PSA10 comps; extrapolated only. GameStop ~700-825 VOID."
+  },
+  "pcg_scenario_matrix": {
+    "immature": {
+      "low": {
+        "none": 117.83,
+        "base": 135.5,
+        "aggressive": 153.18
+      },
+      "base": {
+        "none": 149.96,
+        "base": 172.46,
+        "aggressive": 194.95
+      },
+      "high": {
+        "none": 182.1,
+        "base": 209.41,
+        "aggressive": 236.73
+      }
+    },
+    "mature_geo": {
+      "low": {
+        "none": 138.88,
+        "base": 159.71,
+        "aggressive": 180.54
+      },
+      "base": {
+        "none": 176.75,
+        "base": 203.26,
+        "aggressive": 229.78
+      },
+      "high": {
+        "none": 214.63,
+        "base": 246.82,
+        "aggressive": 279.02
+      }
+    }
+  },
+  "recommendation": {
+    "primary_scenario": "immature (POR RH/H not yet at 151 mature 2.916\u00d7)",
+    "cgcp_blend_immature": 214.23,
+    "cgcp_blend_mature_geo": 252.5,
+    "base_point": 172.46,
+    "base_range": [
+      149.96,
+      194.95
+    ],
+    "bear": 117.83,
+    "bull": 236.73,
+    "bull_if_mature_asserts": 203.26,
+    "k_pcg_base": 0.7,
+    "ftm_base": 0.15,
+    "confidence": "LOW\u2013MODERATE",
+    "confidence_rationale": [
+      "No blister cosmos PSA10 solds (n=0)",
+      "151 cosmos CGC Pristine is PriceCharting estimate $240 with no hard sold comps \u2014 WEAK",
+      "151 cosmos PSA10 n=4 only",
+      "POR RH/H maturity ~0.42 \u2014 cosmos premium likely not fully mature",
+      "PCG liquidity discount k\u2208{0.55,0.70,0.85} is judgmental (PCG colder than PSA/CGC)",
+      "Prior GameStop PSA10 ~$700\u2013825 is VOID for blister target"
+    ],
+    "invalidators": [
+      "First blister-labeled cosmos PSA10 or CGC Pristine solds clear of GS/EB stamps print outside model band",
+      "Hard 151 cosmos CGC Pristine solds replace $240 estimate by >\u00b140%",
+      "POR RH/H PSA10 ratio moves toward \u22652.0 (maturity up) \u2014 shift toward mature_geo path",
+      "PCG Pristine 10 on any POR Gengar finish trades at k outside 0.55\u20130.85 vs CGC Pristine peers",
+      "Blister raw median exits $8\u2013$20 band sustainably",
+      "Contamination: GS/EB stamped comps mislabeled as blister"
+    ]
+  },
+  "sources_notes": [
+    "151 PSA10 medians: prior cleaned analysis (Reg n=29, RH mature May+ n=12, Cosmos n=4)",
+    "151 / POR PriceCharting guides & solds as of 2026-09-10 (user-provided)",
+    "Gem rates: GemRate Reg 23.7%, RH 17.9%, Cosmos/mini tin 10.6%",
+    "151 cosmos CGC Pristine $240 = PC estimate only \u2014 FLAG WEAK",
+    "POR blister cosmos: raw med ~$13.05; PSA10 n=0; exclude all GS/EB stamped",
+    "POR RH CGC Pristine: use $225 sold 2026-08-03 (not $325 dual ask)",
+    "151 Reg CGC Pristine: guide $399.87; credible solds median $400 (dropped $60 outlier)"
+  ]
+}
