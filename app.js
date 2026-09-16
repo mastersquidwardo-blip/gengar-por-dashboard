@@ -25,6 +25,12 @@ async function main() {
   const derived = m.derived;
 
   document.getElementById("asOf").textContent = `as of ${m.as_of}`;
+  const rn = document.getElementById("refreshNote");
+  if (rn && m.market_refresh_2026_09_16) {
+    const r = m.market_refresh_2026_09_16;
+    rn.innerHTML = `<strong>Sep 16 refresh:</strong> eBay blister singles med $${r.ebay_singles_median} · TCG market $${r.tcg_market} · graded blister gem solds: ${r.ebay_graded_blister_psa_cgc_tag_10_sold_matches}. PSA path unchanged; PCG rawpath updated.`;
+  }
+
   document.getElementById("kpiPsa").textContent = money(psa.immature);
   document.getElementById("kpiPsaSub").textContent = `range ${money(psa.via_RH)}–${money(psa.geo_mature)} · center ~$700`;
   document.getElementById("kpiPcg").textContent = money(rec.base_point);
