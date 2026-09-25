@@ -285,5 +285,42 @@
     "psa10_extrapolate_immature": 685.61,
     "pcg_base_point": 161.14,
     "note": "Plain blister median $8.83; TCG empty; GemRate pop up (Pristine 3 exist, still unsold). PSA ~$686 / PCG ~$161 hold."
+  },
+  "plain_language": {
+    "editor_note": "Not shown on the page. Owner timing said July 2025 and late September 2025. Public record: Pokemon Company International, Pitch Black retail release July 17, 2026. This price file is dated 2026-09-24, about two months later. The page uses 2026 so the two-month story matches the shelf date and the price check. PCG intake September 11 plus about 35 days is mid-October of that same year.",
+    "release_means": "On this page, release means when the packs hit shelves — the day a collector could buy one — not a stock-market listing.",
+    "timeline_intro": "Grades do not all show up the week a product hits shelves. Here is the order of events.",
+    "steps": [
+      {
+        "when": "July 17, 2026",
+        "title": "The packs hit shelves",
+        "body": "Pitch Black blisters went on sale. That is the release: the day the product showed up in stores. This card is the Perfect Order Gengar #050 cosmos holo from those blister packs.",
+        "mark": "past"
+      },
+      {
+        "when": "September 11, 2026",
+        "title": "Twenty cards went in for grading",
+        "body": "A batch of 20 of these Gengars was received by PCG. The wait has been slower than people hoped. About 35 days is a fair guess.",
+        "mark": "past"
+      },
+      {
+        "when": "Late September 2026",
+        "title": "You are here",
+        "body": "About two months of supply is out. CGC grades are already starting to appear. Top gems from blister-only copies still have no recorded sales. The price guesses on this page are for this early market.",
+        "mark": "now"
+      },
+      {
+        "when": "Around mid-October 2026",
+        "title": "Those PCG grades should come back",
+        "body": "Count about 35 days from September 11. If that holds, the batch of 20 comes back around mid-October.",
+        "mark": "soon"
+      },
+      {
+        "when": "November into December 2026",
+        "title": "PSA 10s often start to show",
+        "body": "The first PSA 10s for a new set often take about 4 to 5 months after the product hits shelves. From mid-July, that is roughly November into December.",
+        "mark": "later"
+      }
+    ]
   }
 }
