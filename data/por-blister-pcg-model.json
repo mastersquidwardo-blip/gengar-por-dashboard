@@ -1,0 +1,289 @@
+{
+  "as_of": "2026-09-24",
+  "target": "POR Gengar #050/088 blister cosmos holo only \u2014 PCG Pristine 10 (9.5/10/10/10)",
+  "exclusion": "ALL GameStop / EB Games stamped comps VOID for blister target",
+  "void_note": "Prior ~$700\u2013825 GameStop/EB exclusive PSA10 cluster is VOID for blister cosmos. Do not use as blister comps.",
+  "flags": {
+    "cgc_pristine_151_cosmos": "WEAK \u2014 PriceCharting estimate $240; no hard sold comps on PC page",
+    "psa10_blister_cosmos_POR": "NONE \u2014 no direct comps; all PSA10_C_POR are extrapolations",
+    "cgcP_H_POR": "thin guide $69",
+    "grade9_blister_watch": "PC ~$104 \u2014 watch GameStop contamination in grade 9 tabs"
+  },
+  "inputs": {
+    "151": {
+      "psa10_H": 250.0,
+      "psa10_RH_mature": 729.06,
+      "psa10_C": 1342.5,
+      "raw_H": 4.25,
+      "raw_C": 28.0,
+      "cgcP_H_guide": 399.87,
+      "cgcP_H_sold_credible_median": 400,
+      "cgcP_H_used": 399.87,
+      "cgc_gem_C": 133.5,
+      "cgcP_C_estimate": 240.0,
+      "gem_rates": {
+        "H": 0.237,
+        "RH": 0.179,
+        "C": 0.106
+      },
+      "ratios_stated": {
+        "RH_over_Reg": 2.916,
+        "Cos_over_Reg": 5.37,
+        "Cos_over_RH": 1.841
+      }
+    },
+    "POR": {
+      "raw_H": 1.54,
+      "raw_RH": 2.0,
+      "raw_C_blister": 8.83,
+      "psa10_H_guide": 245.0,
+      "psa10_H_sales_range": [
+        213.5,
+        315.0
+      ],
+      "psa10_RH_guide": 294.01,
+      "psa10_RH_sales_range": [
+        255.0,
+        399.99
+      ],
+      "cgcP_H_guide": 69.0,
+      "cgcP_RH_sold": 225.0,
+      "psa10_C_blister": null,
+      "grade8_blister": 81.0,
+      "grade9_pc_approx": 104.0,
+      "raw_C_blister_tcgplayer_market": 6.51,
+      "raw_C_blister_pricecharting": 13.93,
+      "raw_C_blister_ebay_singles_median": 10.0,
+      "raw_C_blister_ebay_recent_week_median": 9.49,
+      "raw_C_blister_ebay_singles_n": 47,
+      "raw_C_blister_ebay_range": [
+        1.0,
+        20.0
+      ],
+      "tcgplayer": {
+        "product_id": 709697,
+        "market": 6.51,
+        "chart_nm": 6.52,
+        "chart_change_pct": -63.43,
+        "low_sale": 4.29,
+        "high_sale": 20.37,
+        "total_sold": 1904,
+        "avg_daily_sold": 21,
+        "live_listings": 0,
+        "live_sellers": 0
+      }
+    },
+    "blend_weights_cgcp": {
+      "rawpath": 0.4,
+      "from_alpha": 0.35,
+      "from_psa_ratio": 0.25
+    },
+    "k_pcg_grid": {
+      "low": 0.55,
+      "base": 0.7,
+      "high": 0.85
+    },
+    "ftm_grid": {
+      "none": 0.0,
+      "base": 0.15,
+      "aggressive": 0.3
+    }
+  },
+  "weights": {
+    "w_inv": {
+      "H": 0.2193,
+      "RH": 0.2904,
+      "C": 0.4903
+    },
+    "w_eq": {
+      "H": 0.3333,
+      "RH": 0.3333,
+      "C": 0.3333
+    },
+    "w_inv_HR": {
+      "H": 0.4303,
+      "RH": 0.5697
+    },
+    "note": "w_inv \u221d 1/gem_rate (harder gems weigh more)"
+  },
+  "derived": {
+    "beta_Cos_over_H": 5.37,
+    "gamma_Cos_over_RH": 1.841,
+    "beta_exact": 5.37,
+    "gamma_exact": 1.8414,
+    "m_raw_cgcP_151C": 8.5714,
+    "m_raw_psa_151C_sales": 47.9464,
+    "m_raw_psa_151C_guide": 49.4643,
+    "m_raw_cgcGem_151C": 4.7679,
+    "ratio_cgcP_over_psa_C_151": 0.1788,
+    "alpha_H_only_151": 1.5995,
+    "alpha_C_only_151_ESTIMATE": 0.1788,
+    "alpha_inv_HC_151_includes_weak_C": 0.288,
+    "alpha_eq_HC_151_includes_weak_C": 0.4018,
+    "alpha_stack_reg_rh_inv_POR": 0.5804,
+    "alpha_stack_reg_rh_eq_POR": 0.5483,
+    "alpha_stack_reg_rh_primary": 0.5804,
+    "alpha_note": "\u03b1_stack_reg_rh from POR H+RH real CGCP (151 RH CGCP unavailable). Inv-gem primary.",
+    "maturity_raw": 0.4233,
+    "maturity_clipped": 0.4233,
+    "POR_RH_over_H": 1.2342
+  },
+  "psa10_C_POR_extrapolations": {
+    "via_H": 1315.65,
+    "via_RH": 541.27,
+    "geo_mature": 843.87,
+    "immature": 685.61,
+    "maturity_raw": 0.4115,
+    "maturity_clipped": 0.4115
+  },
+  "cgcp_C_POR": {
+    "immature": {
+      "rawpath": 75.69,
+      "from_psa_ratio": 122.56,
+      "from_alpha_inv": 397.91,
+      "from_alpha_eq": 375.91,
+      "blend_inv": 200.18,
+      "blend_eq_sens": 192.48
+    },
+    "mature_geo": {
+      "rawpath": 75.69,
+      "from_psa_ratio": 150.86,
+      "from_alpha_inv": 489.76,
+      "from_alpha_eq": 462.68,
+      "blend_inv": 239.41,
+      "blend_eq_sens": 229.93
+    },
+    "via_H": {
+      "rawpath": 75.69,
+      "from_psa_ratio": 235.2,
+      "from_alpha_inv": 763.56,
+      "from_alpha_eq": 721.36,
+      "blend_inv": 356.32,
+      "blend_eq_sens": 341.55
+    },
+    "via_RH": {
+      "rawpath": 75.69,
+      "from_psa_ratio": 96.77,
+      "from_alpha_inv": 314.14,
+      "from_alpha_eq": 296.78,
+      "blend_inv": 164.42,
+      "blend_eq_sens": 158.34
+    },
+    "blend_formula": "0.40*rawpath + 0.35*from_\u03b1(inv) + 0.25*from_psa_ratio"
+  },
+  "psa_equivalent_launch_band": {
+    "immature": 685.61,
+    "mature_geo": 843.87,
+    "via_H": 1315.65,
+    "via_RH": 541.27,
+    "note": "No direct blister cosmos PSA10 comps; extrapolated only. GameStop ~700-825 VOID. Confirmed 2026-09-24: 0 graded blister gem sold matches on eBay; GemRate CGC pop 18 (Pristine 3, Gems+ 7, gem rate 38.9%) with still-zero sales."
+  },
+  "pcg_scenario_matrix": {
+    "immature": {
+      "low": {
+        "none": 110.1,
+        "base": 126.61,
+        "aggressive": 143.13
+      },
+      "base": {
+        "none": 140.13,
+        "base": 161.14,
+        "aggressive": 182.16
+      },
+      "high": {
+        "none": 170.15,
+        "base": 195.68,
+        "aggressive": 221.2
+      }
+    },
+    "mature_geo": {
+      "low": {
+        "none": 131.68,
+        "base": 151.43,
+        "aggressive": 171.18
+      },
+      "base": {
+        "none": 167.59,
+        "base": 192.73,
+        "aggressive": 217.86
+      },
+      "high": {
+        "none": 203.5,
+        "base": 234.02,
+        "aggressive": 264.55
+      }
+    }
+  },
+  "recommendation": {
+    "primary_scenario": "immature (POR RH/H not yet at 151 mature 2.916\u00d7); raw refreshed 2026-09-24",
+    "cgcp_blend_immature": 200.18,
+    "cgcp_blend_mature_geo": 239.41,
+    "base_point": 161.14,
+    "base_range": [
+      140.13,
+      182.16
+    ],
+    "bear": 110.1,
+    "bull": 221.2,
+    "bull_if_mature_asserts": 192.73,
+    "k_pcg_base": 0.7,
+    "ftm_base": 0.15,
+    "confidence": "LOW\u2013MODERATE",
+    "confidence_rationale": [
+      "Still zero blister cosmos PSA10/CGC10/Pristine solds on eBay (graded searches returned 0)",
+      "GemRate now shows CGC pop 18 with 3 Pristine / 7 Gems+ (38.9% gem rate) but no sales printed",
+      "Raw blister plain median $8.83 (n=27 eBay); swirl median $10 (n=8); TCGPlayer no listings",
+      "PSA ~$686 path flat \u2014 POR H $245.0 / RH $294.01 maturity still clipped (~0.41)",
+      "151 cosmos CGC Pristine $240 remains a weak PriceCharting estimate",
+      "PCG liquidity discount k\u2208{0.55,0.70,0.85} remains judgmental"
+    ],
+    "invalidators": [
+      "First blister-labeled cosmos PSA10 or CGC Pristine solds clear of GS/EB stamps print outside model band",
+      "Hard 151 cosmos CGC Pristine solds replace $240 estimate by >\u00b140%",
+      "POR RH/H PSA10 ratio moves toward \u22652.0 (maturity up) \u2014 shift toward mature_geo path",
+      "PCG Pristine 10 on any POR Gengar finish trades at k outside 0.55\u20130.85 vs CGC Pristine peers",
+      "Blister raw median exits $8\u2013$20 band sustainably",
+      "Contamination: GS/EB stamped comps mislabeled as blister"
+    ]
+  },
+  "sources_notes": [
+    "151 PSA10 medians: prior cleaned analysis (Reg n=29, RH mature May+ n=12, Cosmos n=4)",
+    "151 / POR PriceCharting guides & solds as of 2026-09-10 (user-provided)",
+    "Gem rates: GemRate Reg 23.7%, RH 17.9%, Cosmos/mini tin 10.6%",
+    "151 cosmos CGC Pristine $240 = PC estimate only \u2014 FLAG WEAK",
+    "POR blister cosmos: raw med ~$13.05; PSA10 n=0; exclude all GS/EB stamped",
+    "POR RH CGC Pristine: use $225 sold 2026-08-03 (not $325 dual ask)",
+    "151 Reg CGC Pristine: guide $399.87; credible solds median $400 (dropped $60 outlier)"
+  ],
+  "market_refresh_2026_09_16": {
+    "source": "eBay sold (authenticated scrape) + TCGPlayer product 709697",
+    "ebay_singles_excluded_lots": true,
+    "ebay_graded_blister_psa_cgc_tag_10_sold_matches": 0,
+    "ebay_singles_median": 10.0,
+    "ebay_recent_week_median": 9.49,
+    "tcg_market": 6.51,
+    "note": "Raw softer than Sep 10 ~$13.05. PSA path unchanged (stack bridge). PCG rawpath refreshed."
+  },
+  "market_refresh_2026_09_24": {
+    "source": "eBay sold/completed scrape (40 rows) + GemRate CGC pop + PriceCharting stack + TCGPlayer product 709697",
+    "ebay_singles_excluded_lots": true,
+    "ebay_graded_blister_psa_cgc_tag_10_sold_matches": 0,
+    "ebay_plain_blister_n": 27,
+    "ebay_plain_blister_median": 8.83,
+    "ebay_swirl_n": 8,
+    "ebay_swirl_median": 10.0,
+    "ebay_singles_median": 8.83,
+    "tcg_market": null,
+    "tcg_listings": 0,
+    "gemrate_cgc_pop": 18,
+    "gemrate_gems_plus": 7,
+    "gemrate_pristine": 3,
+    "gemrate_gem_rate_pct": 38.9,
+    "gemrate_sales": 0,
+    "por_psa10_H": 245.0,
+    "por_psa10_RH": 294.01,
+    "psa10_extrapolate_immature": 685.61,
+    "pcg_base_point": 161.14,
+    "note": "Plain blister median $8.83; TCG empty; GemRate pop up (Pristine 3 exist, still unsold). PSA ~$686 / PCG ~$161 hold."
+  }
+}
