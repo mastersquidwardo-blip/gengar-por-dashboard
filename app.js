@@ -1,219 +1,167 @@
-const money = (n) =>
-  n == null || Number.isNaN(n)
-    ? "—"
-    : new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-      }).format(n);
-
-const money1 = (n) =>
-  new Intl.NumberFormat("en-US", {
+const dollars = (n) => {
+  if (n == null || Number.isNaN(Number(n))) return "—";
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
     maximumFractionDigits: 0,
-  }).format(n);
+  }).format(Number(n));
+};
+
+const cents = (n) => {
+  if (n == null || Number.isNaN(Number(n))) return "—";
+  const num = Number(n);
+  const digits = Number.isInteger(num) ? 0 : 2;
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+  }).format(num);
+};
+
+function prettyDate(iso) {
+  const parts = String(iso || "").split("-").map(Number);
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ];
+  const [year, month, day] = parts;
+  if (!year || !month || !day || !months[month - 1]) return String(iso || "");
+  return `${months[month - 1]} ${day}, ${year}`;
+}
+
+function plainConfidence(raw) {
+  const text = String(raw || "").toLowerCase();
+  if (text.includes("low") && text.includes("mod")) return "Low to moderate";
+  if (text.includes("high")) return "High";
+  if (text.includes("moderate")) return "Moderate";
+  if (text.includes("low")) return "Low";
+  return "Low to moderate";
+}
+
+function fill(figures) {
+  document.querySelectorAll("[data-fill]").forEach((el) => {
+    const key = el.getAttribute("data-fill");
+    if (figures[key] != null) el.textContent = figures[key];
+  });
+}
+
+function gradeSentence(refresh) {
+  const copies = refresh && refresh.gemrate_cgc_pop;
+  const gems = refresh && refresh.gemrate_gems_plus;
+  const pristine = refresh && refresh.gemrate_pristine;
+  if (copies == null || gems == null || pristine == null) {
+    return "CGC has already graded some copies, including a few at the very top. None of those top blister copies have sold.";
+  }
+  const sales = refresh.gemrate_sales;
+  const sold = sales === 0 || sales == null
+    ? "None of them have sold."
+    : "Recorded sales of those top copies are still scarce.";
+  return `CGC has already graded about ${copies} copies. About ${gems} of those are gem grades, including ${pristine} at the top pristine grade. ${sold}`;
+}
+
+function tcgSentence(refresh, prior) {
+  const empty = !refresh || refresh.tcg_listings === 0 || refresh.tcg_market == null;
+  if (!empty) {
+    return `TCGPlayer’s market price when we looked was about ${cents(refresh.tcg_market)}. eBay sold prices are still the ones we trust.`;
+  }
+  const older = prior && prior.tcg_market != null
+    ? ` The last market price we saw there, in mid-September, was about ${cents(prior.tcg_market)}.`
+    : "";
+  return `TCGPlayer had no listings when we looked.${older} eBay sold prices are the ones we trust.`;
+}
+
+function renderSteps(steps) {
+  const list = document.getElementById("steps");
+  if (!list || !Array.isArray(steps) || !steps.length) return;
+  const fragment = document.createDocumentFragment();
+  steps.forEach((step) => {
+    const item = document.createElement("li");
+    item.className = `step ${step.mark || ""}`.trim();
+
+    const rail = document.createElement("div");
+    rail.className = "rail";
+    const dot = document.createElement("span");
+    dot.className = "dot";
+    const line = document.createElement("span");
+    line.className = "line";
+    rail.append(dot, line);
+
+    const body = document.createElement("div");
+    body.className = "step-body";
+    const when = document.createElement("p");
+    when.className = "when";
+    when.textContent = step.when || "";
+    const title = document.createElement("h3");
+    title.textContent = step.title || "";
+    const copy = document.createElement("p");
+    copy.textContent = step.body || "";
+    body.append(when, title, copy);
+
+    item.append(rail, body);
+    fragment.append(item);
+  });
+  list.replaceChildren(fragment);
+}
 
 async function main() {
   const res = await fetch("./data/por-blister-pcg-model.json");
-  if (!res.ok) throw new Error("Failed to load model JSON");
-  const m = await res.json();
+  if (!res.ok) throw new Error("notes unavailable");
+  const model = await res.json();
 
-  const psa = m.psa10_C_POR_extrapolations;
-  const rec = m.recommendation;
-  const matrix = m.pcg_scenario_matrix.immature;
-  const derived = m.derived;
+  const earlyPsa = model.psa10_C_POR_extrapolations;
+  const rec = model.recommendation;
+  const refresh = model.market_refresh_2026_09_24 || {};
+  const prior = model.market_refresh_2026_09_16 || {};
+  const range = (model.inputs.POR && model.inputs.POR.raw_C_blister_ebay_range) || [];
+  const olderGuide = model.inputs["151"] && model.inputs["151"].cgcP_C_estimate;
+  const copy = model.plain_language || {};
 
-  document.getElementById("asOf").textContent = `as of ${m.as_of}`;
-  const rn = document.getElementById("refreshNote");
-  if (rn) {
-    const r24 = m.market_refresh_2026_09_24;
-    const r16 = m.market_refresh_2026_09_16;
-    if (r24) {
-      const tcg = r24.tcg_market == null ? "no listings" : ("$" + r24.tcg_market);
-      rn.innerHTML = `<strong>Sep 24 refresh:</strong> eBay plain blister med $${r24.ebay_plain_blister_median} (n=${r24.ebay_plain_blister_n}) · swirl med $${r24.ebay_swirl_median} · TCG ${tcg} · GemRate CGC pop ${r24.gemrate_cgc_pop} (Pristine ${r24.gemrate_pristine}, Gems+ ${r24.gemrate_gems_plus}) · graded gem solds: ${r24.ebay_graded_blister_psa_cgc_tag_10_sold_matches}. PSA ~$${Math.round(r24.psa10_extrapolate_immature)}; PCG ~$${Math.round(r24.pcg_base_point)}.`;
-    } else if (r16) {
-      rn.innerHTML = `<strong>Sep 16 refresh:</strong> eBay blister singles med $${r16.ebay_singles_median} · TCG market $${r16.tcg_market} · graded blister gem solds: ${r16.ebay_graded_blister_psa_cgc_tag_10_sold_matches}. PSA path unchanged; PCG rawpath updated.`;
-    }
-  }
-
-  document.getElementById("kpiPsa").textContent = money(psa.immature);
-  document.getElementById("kpiPsaSub").textContent = `range ${money(psa.via_RH)}–${money(psa.geo_mature)} · center ~$700`;
-  document.getElementById("kpiPcg").textContent = money(rec.base_point);
-  document.getElementById("kpiPcgSub").textContent = `range ${money(rec.base_range[0])}–${money(rec.base_range[1])}`;
-  document.getElementById("kpiMat").textContent = derived.maturity_clipped.toFixed(2);
-  document.getElementById("kpiConf").textContent = rec.confidence;
-
-  document.getElementById("pathNote").textContent =
-    "Primary path holds maturity at ~0.42 until POR reverse separates from holo. PCG stays discounted vs CGC Pristine equivalent (k=0.70) with a fading +15% first-to-market bump.";
-
-  // Predictive path: Launch (immature) → Mid (halfway to mature) → Mature geo
-  const psaPath = [
-    psa.immature,
-    (psa.immature + psa.geo_mature) / 2,
-    psa.geo_mature,
-  ];
-  const pcgPath = [
-    rec.base_point,
-    (rec.base_point + rec.bull_if_mature_asserts) / 2,
-    rec.bull_if_mature_asserts,
-  ];
-
-  const labels = ["Launch (immature)", "RH starts separating", "Mature geo"];
-  const gridColor = "rgba(45,35,64,.9)";
-  const tick = { color: "#a89bbf", font: { family: "IBM Plex Sans" } };
-
-  new Chart(document.getElementById("pathChart"), {
-    type: "line",
-    data: {
-      labels,
-      datasets: [
-        {
-          label: "PSA 10 (extrapolated)",
-          data: psaPath,
-          borderColor: "#9b6dff",
-          backgroundColor: "rgba(155,109,255,.15)",
-          fill: true,
-          tension: 0.28,
-          pointRadius: 5,
-          pointBackgroundColor: "#c4a6ff",
-        },
-        {
-          label: "PCG Pristine 10 (base k/ftm)",
-          data: pcgPath,
-          borderColor: "#4de1c1",
-          backgroundColor: "rgba(77,225,193,.12)",
-          fill: true,
-          tension: 0.28,
-          pointRadius: 5,
-          pointBackgroundColor: "#4de1c1",
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: true,
-      interaction: { mode: "index", intersect: false },
-      plugins: {
-        legend: { labels: { color: "#f3eefc" } },
-        tooltip: {
-          callbacks: {
-            label: (ctx) => `${ctx.dataset.label}: ${money1(ctx.parsed.y)}`,
-          },
-        },
-      },
-      scales: {
-        x: { ticks: tick, grid: { color: gridColor } },
-        y: {
-          ticks: {
-            ...tick,
-            callback: (v) => "$" + Number(v).toLocaleString("en-US"),
-          },
-          grid: { color: gridColor },
-        },
-      },
-    },
+  fill({
+    checked: prettyDate(model.as_of),
+    confidence: plainConfidence(rec.confidence),
+    "psa-early": dollars(earlyPsa.immature),
+    "pcg-early": dollars(rec.base_point),
+    "psa-later": dollars(earlyPsa.geo_mature),
+    "pcg-later": dollars(rec.bull_if_mature_asserts),
+    "psa-low": dollars(earlyPsa.via_RH),
+    "psa-high": dollars(earlyPsa.via_H),
+    "pcg-band-low": dollars(rec.base_range[0]),
+    "pcg-band-high": dollars(rec.base_range[1]),
+    "pcg-cautious": dollars(rec.bear),
+    "pcg-hot": dollars(rec.bull),
+    "guide-151": dollars(olderGuide),
+    "raw-low": cents(range[0]),
+    "raw-high": cents(range[1]),
+    plain: cents(refresh.ebay_plain_blister_median),
+    swirl: cents(refresh.ebay_swirl_median),
+    "plain-count": refresh.ebay_plain_blister_n != null ? String(refresh.ebay_plain_blister_n) : "—",
+    "swirl-count": refresh.ebay_swirl_n != null ? String(refresh.ebay_swirl_n) : "—",
   });
 
-  new Chart(document.getElementById("psaLadder"), {
-    type: "bar",
-    data: {
-      labels: ["via RH", "Immature ★", "Mature geo", "via H"],
-      datasets: [
-        {
-          label: "PSA 10",
-          data: [psa.via_RH, psa.immature, psa.geo_mature, psa.via_H],
-          backgroundColor: [
-            "rgba(168,155,191,.55)",
-            "rgba(155,109,255,.95)",
-            "rgba(196,166,255,.75)",
-            "rgba(255,107,203,.55)",
-          ],
-          borderRadius: 8,
-        },
-      ],
-    },
-    options: {
-      indexAxis: "y",
-      responsive: true,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: { label: (ctx) => money1(ctx.parsed.x) },
-        },
-      },
-      scales: {
-        x: {
-          ticks: {
-            ...tick,
-            callback: (v) => "$" + Number(v).toLocaleString("en-US"),
-          },
-          grid: { color: gridColor },
-        },
-        y: { ticks: tick, grid: { display: false } },
-      },
-    },
+  document.querySelectorAll('time[data-fill="checked"]').forEach((el) => {
+    if (model.as_of) el.setAttribute("datetime", model.as_of);
   });
 
-  // PCG matrix table
-  const thead = document.querySelector("#pcgMatrix thead");
-  const tbody = document.querySelector("#pcgMatrix tbody");
-  thead.innerHTML = `<tr><th>k_pcg \\ ftm</th><th>none</th><th>base +15%</th><th>agg +30%</th></tr>`;
-  const rows = [
-    ["low 0.55", matrix.low],
-    ["base 0.70", matrix.base],
-    ["high 0.85", matrix.high],
-  ];
-  tbody.innerHTML = rows
-    .map(([name, row], i) => {
-      const hl = i === 1 ? "hl" : "";
-      return `<tr>
-        <td>${name}</td>
-        <td class="${hl}">${money(row.none)}</td>
-        <td class="${hl}">${money(row.base)}</td>
-        <td class="${hl}">${money(row.aggressive)}</td>
-      </tr>`;
-    })
-    .join("");
+  const release = document.getElementById("release-means");
+  if (release && copy.release_means) release.textContent = copy.release_means;
 
-  // Bridge cards
-  document.getElementById("bridge").innerHTML = `
-    <div class="card"><h3>151 Reg PSA10</h3><div class="big">${money(m.inputs["151"].psa10_H)}</div><div class="tiny">β cosmos = ${derived.beta_Cos_over_H}×</div></div>
-    <div class="card"><h3>151 RH PSA10</h3><div class="big">${money(m.inputs["151"].psa10_RH_mature)}</div><div class="tiny">γ cosmos = ${derived.gamma_Cos_over_RH}×</div></div>
-    <div class="card"><h3>151 Cosmos PSA10</h3><div class="big">${money(m.inputs["151"].psa10_C)}</div><div class="tiny">raw→CGC_P ≈ ${derived.m_raw_cgcP_151C.toFixed(2)}× (weak est.)</div></div>
-    <div class="card"><h3>POR H PSA10</h3><div class="big">${money(m.inputs.POR.psa10_H_guide)}</div><div class="tiny">raw ~${money(m.inputs.POR.raw_H)}</div></div>
-    <div class="card"><h3>POR RH PSA10</h3><div class="big">${money(m.inputs.POR.psa10_RH_guide)}</div><div class="tiny">RH/H = ${derived.POR_RH_over_H.toFixed(2)}×</div></div>
-    <div class="card"><h3>POR blister raw</h3><div class="big">${money(m.inputs.POR.raw_C_blister)}</div><div class="tiny">PSA10 blister n = 0</div></div>
-  `;
+  const intro = document.getElementById("timeline-intro");
+  if (intro && copy.timeline_intro) intro.textContent = copy.timeline_intro;
 
-  document.getElementById("formula").textContent = [
-    "maturity = clip((POR_RH/H) / (151_RH/H), 0.25, 1) ≈ " + derived.maturity_clipped.toFixed(3),
-    "PSA10_C_POR_immature = PSA10_H_POR × (1 + (β − 1) × maturity) ≈ " + money(psa.immature),
-    "CGCP_blend = 0.40·rawpath + 0.35·(PSA×α) + 0.25·(PSA×CGCP/PSA) ≈ " + money(rec.cgcp_blend_immature),
-    "PCG = CGCP_blend × k_pcg × (1 + ftm)   // base: k=0.70, ftm=+15% → " + money(rec.base_point),
-    "α_stack_reg_rh (inv gem weights on POR H+RH) ≈ " + derived.alpha_stack_reg_rh_primary.toFixed(3),
-  ].join("\n");
+  const grades = document.getElementById("grade-count");
+  if (grades) grades.textContent = gradeSentence(refresh);
 
-  document.getElementById("assumptions").innerHTML = [
-    "Blister cosmos only — GameStop/EB stamped comps excluded.",
-    "Primary PSA path uses immature maturity clip until POR reverse premium forms.",
-    "PCG colder than PSA/CGC → base k_pcg = 0.70.",
-    "First-to-market launch bump +15%, expected to fade.",
-    "151 cosmos CGC Pristine $240 is a PriceCharting estimate (weak).",
-    ...rec.confidence_rationale.slice(0, 2),
-  ]
-    .map((t) => `<li>${t}</li>`)
-    .join("");
+  const tcg = document.getElementById("tcg-note");
+  if (tcg) tcg.textContent = tcgSentence(refresh, prior);
 
-  document.getElementById("invalidators").innerHTML = rec.invalidators
-    .map((t) => `<li>${t}</li>`)
-    .join("");
+  if (Array.isArray(copy.steps) && copy.steps.length) renderSteps(copy.steps);
 }
 
 main().catch((err) => {
   console.error(err);
-  document.body.insertAdjacentHTML(
-    "afterbegin",
-    `<div class="callout void"><strong>Load error:</strong> ${err.message}</div>`
-  );
+  const box = document.getElementById("load-error");
+  if (!box) return;
+  box.hidden = false;
+  box.textContent = "The latest price notes did not load. The figures on the page are from the last check we wrote down.";
 });
