@@ -39,10 +39,15 @@ function plainConfidence(raw) {
   return "Low to moderate";
 }
 
+function setText(el, value) {
+  if (!el || value == null) return;
+  el.textContent = value;
+}
+
 function fill(figures) {
   document.querySelectorAll("[data-fill]").forEach((el) => {
     const key = el.getAttribute("data-fill");
-    if (figures[key] != null) el.textContent = figures[key];
+    setText(el, figures[key]);
   });
 }
 
@@ -91,11 +96,11 @@ function renderSteps(steps) {
     body.className = "step-body";
     const when = document.createElement("p");
     when.className = "when";
-    when.textContent = step.when || "";
+    setText(when, step.when || "");
     const title = document.createElement("h3");
-    title.textContent = step.title || "";
+    setText(title, step.title || "");
     const copy = document.createElement("p");
-    copy.textContent = step.body || "";
+    setText(copy, step.body || "");
     body.append(when, title, copy);
 
     item.append(rail, body);
@@ -105,16 +110,19 @@ function renderSteps(steps) {
 }
 
 async function main() {
-  const res = await fetch("./data/por-blister-pcg-model.json");
+  const res = await fetch("./data/por-blister-pcg-model.json?v=20260926");
   if (!res.ok) throw new Error("notes unavailable");
   const model = await res.json();
 
-  const earlyPsa = model.psa10_C_POR_extrapolations;
-  const rec = model.recommendation;
+  const earlyPsa = model.psa10_C_POR_extrapolations || {};
+  const rec = model.recommendation || {};
+  const band = rec.base_range || [];
   const refresh = model.market_refresh_2026_09_24 || {};
   const prior = model.market_refresh_2026_09_16 || {};
-  const range = (model.inputs.POR && model.inputs.POR.raw_C_blister_ebay_range) || [];
-  const olderGuide = model.inputs["151"] && model.inputs["151"].cgcP_C_estimate;
+  const por = (model.inputs && model.inputs.POR) || {};
+  const range = por.raw_C_blister_ebay_range || [];
+  const older = model.inputs && model.inputs["151"];
+  const olderGuide = older && older.cgcP_C_estimate;
   const copy = model.plain_language || {};
 
   fill({
@@ -126,8 +134,8 @@ async function main() {
     "pcg-later": dollars(rec.bull_if_mature_asserts),
     "psa-low": dollars(earlyPsa.via_RH),
     "psa-high": dollars(earlyPsa.via_H),
-    "pcg-band-low": dollars(rec.base_range[0]),
-    "pcg-band-high": dollars(rec.base_range[1]),
+    "pcg-band-low": dollars(band[0]),
+    "pcg-band-high": dollars(band[1]),
     "pcg-cautious": dollars(rec.bear),
     "pcg-hot": dollars(rec.bull),
     "guide-151": dollars(olderGuide),
@@ -143,17 +151,10 @@ async function main() {
     if (model.as_of) el.setAttribute("datetime", model.as_of);
   });
 
-  const release = document.getElementById("release-means");
-  if (release && copy.release_means) release.textContent = copy.release_means;
-
-  const intro = document.getElementById("timeline-intro");
-  if (intro && copy.timeline_intro) intro.textContent = copy.timeline_intro;
-
-  const grades = document.getElementById("grade-count");
-  if (grades) grades.textContent = gradeSentence(refresh);
-
-  const tcg = document.getElementById("tcg-note");
-  if (tcg) tcg.textContent = tcgSentence(refresh, prior);
+  setText(document.getElementById("release-means"), copy.release_means);
+  setText(document.getElementById("timeline-intro"), copy.timeline_intro);
+  setText(document.getElementById("grade-count"), gradeSentence(refresh));
+  setText(document.getElementById("tcg-note"), tcgSentence(refresh, prior));
 
   if (Array.isArray(copy.steps) && copy.steps.length) renderSteps(copy.steps);
 }
@@ -163,5 +164,5 @@ main().catch((err) => {
   const box = document.getElementById("load-error");
   if (!box) return;
   box.hidden = false;
-  box.textContent = "The latest price notes did not load. The figures on the page are from the last check we wrote down.";
+  setText(box, "The latest price notes did not load. The figures on the page are from the last check we wrote down.");
 });
