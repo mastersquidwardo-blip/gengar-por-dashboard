@@ -128,11 +128,19 @@ async function main() {
   document.getElementById("kpiPcg").textContent = money(rec.base_point);
   document.getElementById("kpiPcgSub").textContent = `Fair band ${money(rec.base_range[0])}–${money(rec.base_range[1])}`;
   document.getElementById("kpiMat").textContent = derived.maturity_clipped.toFixed(2);
-  document.getElementById("kpiConf").textContent = plainConfidence(rec.confidence);
+  const porRhOverH = m.inputs.POR.psa10_RH_guide / m.inputs.POR.psa10_H_guide;
+  const mewRhOverH = m.inputs["151"].psa10_RH_mature / m.inputs["151"].psa10_H;
+  const matSub = document.getElementById("kpiMatSub");
+  if (matSub) {
+    matSub.textContent = `This set's reverse is ${porRhOverH.toFixed(2)}× its holo. 151's reverse is ${mewRhOverH.toFixed(2)}×.`;
+  }
+  document.getElementById("kpiConf").textContent = "40%";
+  const confSub = document.getElementById("kpiConfSub");
+  if (confSub) confSub.textContent = "Still low to moderate. No blister PSA 10 has sold.";
 
   document.getElementById("pathNote").textContent = compReady
     ? `The upper line is the sold-comp read, now that ${comp.cards.length} cards are in. PCG pristine at ${times(comp.multiplier)} the PSA 10 guess.`
-    : `Quote the early-market PSA number. The PCG line is the older formula: about 70% of a CGC pristine, plus a small first-sale bump. Same-card sales are listed under the grid. ${comp.cards.length} cards is not enough to draw them on this chart.`;
+    : `Sep 2026 is the quote. About Jul 2027 is a year after the Jul 17, 2026 shelf date. About early 2029 is the long wait, matched to how long 151's cosmos premium took. The PCG line is still 70% of a CGC pristine plus 15%. ${comp.cards.length} PCG cards is not enough to draw a sold-comp line.`;
 
   const psaPath = [
     psa.immature,
@@ -145,7 +153,17 @@ async function main() {
     rec.bull_if_mature_asserts,
   ];
 
-  const labels = ["Early market", "Reverse starts to pull away", "Settled, like 151"];
+  const labels = ["Sep 2026 · now", "About Jul 2027", "About early 2029"];
+  const maturityDef = document.getElementById("maturityDef");
+  if (maturityDef) {
+    maturityDef.textContent =
+      `0.42 is a ratio, not a price. 151's reverse PSA 10 (${money(m.inputs["151"].psa10_RH_mature)}) is ${mewRhOverH.toFixed(2)}× its regular-holo PSA 10 (${money(m.inputs["151"].psa10_H)}). This set's reverse PSA 10 (${money(m.inputs.POR.psa10_RH_guide)}) is ${porRhOverH.toFixed(2)}× its regular-holo PSA 10 (${money(m.inputs.POR.psa10_H_guide)}). ${porRhOverH.toFixed(2)} ÷ ${mewRhOverH.toFixed(2)} = ${(porRhOverH / mewRhOverH).toFixed(2)}. The card shows ${derived.maturity_clipped.toFixed(2)} from a slightly higher reverse ratio already stored in the price file. The quote uses the ${psa.maturity_clipped.toFixed(2)} figure. Dates: blister shelves were Jul 17, 2026. Jul 2027 is about a year later, when a reverse premium can start to open. Early 2029 is about two and a half years later, which is how long 151's cosmos premium took to look settled.`;
+  }
+  const pegNote = document.getElementById("pegNote");
+  if (pegNote) {
+    pegNote.textContent =
+      "Sep 26 mega-era list, labels not photo-confirmed, so this is not the quote. Mega Gengar ex #284 has all three grades: PCG $1,275, CGC pristine middle $2,025, PSA 10 middle $2,218. That is PCG at 0.63× CGC pristine and 0.58× PSA 10, and CGC pristine at 0.91× PSA 10. The cheaper Mega Gengar ex #269 is different: one PCG at $157.50 against a CGC pristine middle of $159, about 1.0×, with no PSA 10 in the list. Diancie is left out because its PCG sale sits above the CGC sales. The old 70% then +15% still lands near 0.81× a CGC pristine, between those two Gengar reads.";
+  }
   const gridColor = "rgba(45,35,64,.9)";
   const tick = { color: "#a89bbf", font: { family: "IBM Plex Sans" } };
 
