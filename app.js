@@ -119,17 +119,18 @@ async function main() {
 
   document.getElementById("kpiPsa").textContent = money(psa.immature);
   document.getElementById("kpiPsaSub").textContent = `Low about ${money(psa.via_RH)}. Settled market about ${money(psa.geo_mature)}.`;
-  const comp = pcgOverPsa(m.pcg_ebay_comp_review && m.pcg_ebay_comp_review.sales);
+  const compReview = m.pcg_ebay_comp_review || {};
+  const comp = pcgOverPsa(compReview.sales);
+  const minCards = compReview.min_cards || 8;
+  const compReady = comp.cards.length >= minCards;
   document.getElementById("kpiPcg").textContent = money(rec.base_point);
-  document.getElementById("kpiPcgSub").textContent = comp.multiplier
-    ? `Older CGC formula, band ${money(rec.base_range[0])}–${money(rec.base_range[1])}. Sold comps say ${times(comp.multiplier)} a PSA 10, about ${money(psa.immature * comp.multiplier)}.`
-    : `Fair band ${money(rec.base_range[0])}–${money(rec.base_range[1])}`;
+  document.getElementById("kpiPcgSub").textContent = `Fair band ${money(rec.base_range[0])}–${money(rec.base_range[1])}`;
   document.getElementById("kpiMat").textContent = derived.maturity_clipped.toFixed(2);
   document.getElementById("kpiConf").textContent = plainConfidence(rec.confidence);
 
-  document.getElementById("pathNote").textContent = comp.multiplier
-    ? `The lower PCG line is the older formula: about 70% of a CGC pristine, plus a small first-sale bump. The upper PCG line applies these sold comps: a PCG pristine at ${times(comp.multiplier)} the PSA 10 guess. These comps are other cards, not this blister Gengar.`
-    : "Quote the early-market number. The PCG line sits below a CGC pristine on purpose: about 70% of that price, plus a small bump because these would be some of the first ones for sale. That bump should fade.";
+  document.getElementById("pathNote").textContent = compReady
+    ? `The upper line is the sold-comp read, now that ${comp.cards.length} cards are in. PCG pristine at ${times(comp.multiplier)} the PSA 10 guess.`
+    : `Quote the early-market PSA number. The PCG line is the older formula: about 70% of a CGC pristine, plus a small first-sale bump. Same-card sales are listed under the grid. ${comp.cards.length} cards is not enough to draw them on this chart.`;
 
   const psaPath = [
     psa.immature,
@@ -162,18 +163,18 @@ async function main() {
           pointBackgroundColor: "#c4a6ff",
         },
         {
-          label: "PCG from the CGC formula",
+          label: "PCG pristine guess",
           data: pcgPath,
           borderColor: "#4de1c1",
           backgroundColor: "rgba(77,225,193,.12)",
-          fill: false,
+          fill: true,
           tension: 0.28,
           pointRadius: 5,
           pointBackgroundColor: "#4de1c1",
         },
-        ...(comp.multiplier
+        ...(compReady
           ? [{
-              label: "PCG if it sells like these comps",
+              label: "PCG from sold comps",
               data: psaPath.map((value) => value * comp.multiplier),
               borderColor: "#ffb454",
               backgroundColor: "transparent",
@@ -276,7 +277,7 @@ async function main() {
     })
     .join("");
 
-  renderCompReview(m.pcg_ebay_comp_review, comp, psa.immature);
+  renderCompReview(compReview, comp, { ready: compReady, minCards });
 
   const card = (id, title, big, tiny) => {
     const sku = skuById[id];
@@ -299,7 +300,7 @@ async function main() {
     "CGC pristine blend = 40% from the raw price + 35% from the PSA price × a grade ratio + 25% from the PSA price × the pristine/PSA ratio = " + money(rec.cgcp_blend_immature) + ".",
     "PCG quote = that blend × 0.70 × 1.15 = " + money(rec.base_point) + ".",
     comp.multiplier
-      ? "Sold-comp quote = PSA 10 × the middle same-card ratio (" + times(comp.multiplier) + ") = " + money(psa.immature * comp.multiplier) + " on the early PSA guess. Card ratios run " + times(comp.low) + " to " + times(comp.high) + "."
+      ? "Sold comps so far: " + comp.cards.length + " cards, middle ratio " + times(comp.multiplier) + ", range " + times(comp.low) + " to " + times(comp.high) + ". Not used as the quote until " + minCards + " cards are in."
       : "",
   ].filter(Boolean).join("\n");
 
@@ -340,7 +341,7 @@ async function main() {
     .join("");
 }
 
-function renderCompReview(review, comp, psaEarly) {
+function renderCompReview(review, comp, status) {
   const box = document.getElementById("compReview");
   if (!box) return;
   const sales = review && Array.isArray(review.sales) ? review.sales : [];
@@ -351,9 +352,14 @@ function renderCompReview(review, comp, psaEarly) {
       <p class="empty">Nothing reviewed yet. When sold comps are written into the price file, each sale shows here with the date, the price, the listing, and whether it counts.</p>`;
     return;
   }
+  const ready = status && status.ready;
+  const minCards = (status && status.minCards) || 8;
   const cardLines = comp.cards
     .map((card) => `${card.name}: ${price(card.pcg)} ÷ ${price(card.psa)} = ${times(card.ratio)}`)
     .join(". ");
+  const headline = ready
+    ? `<strong>PCG pristine = ${times(comp.multiplier)} the same card's PSA 10.</strong> ${cardLines}.`
+    : `<strong>Not enough sales to price this card.</strong> ${comp.cards.length} cards so far, and the page waits for ${minCards}. ${cardLines}. The middle of this thin set is ${times(comp.multiplier)}, and the cards run ${times(comp.low)} to ${times(comp.high)}. That spread is too wide, and none of these is the blister Gengar. The quote on the card stays the CGC formula.`;
   const body = sales
     .map((sale) => {
       const counts = sale.keep ? `<span class="keep">Counts</span>` : `<span class="drop">Leave out</span>`;
@@ -372,7 +378,7 @@ function renderCompReview(review, comp, psaEarly) {
     })
     .join("");
   box.innerHTML = `<h3>Reviewed eBay sales</h3>
-    <p class="comp-formula"><strong>PCG pristine = ${times(comp.multiplier)} the same card's PSA 10.</strong> ${cardLines}. On the early Gengar PSA guess, that is about ${money(psaEarly * comp.multiplier)}, and the three cards span about ${money(psaEarly * comp.low)} to ${money(psaEarly * comp.high)}. These are other cards. None of them is the blister Gengar.</p>
+    <p class="${ready ? "comp-formula" : "comp-wait"}">${headline}</p>
     <p class="lead">${note}</p>
     <div class="table-wrap"><table>
       <thead><tr><th>Date</th><th>Card</th><th>Grade</th><th>Listing</th><th>Price</th><th>Use it?</th><th>Why</th></tr></thead>

@@ -199,3 +199,13 @@ td.hl { color: var(--teal); font-weight: 600; }
   font-size: 14px;
 }
 .comp-formula strong { color: var(--teal); }
+.comp-wait {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 180, 84, .08);
+  border: 1px solid rgba(255, 180, 84, .35);
+  color: #ffe3bf;
+  font-size: 14px;
+}
+.comp-wait strong { color: var(--warn); }

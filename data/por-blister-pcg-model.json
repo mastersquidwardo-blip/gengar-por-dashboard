@@ -359,9 +359,10 @@
     }
   ],
   "pcg_ebay_comp_review": {
-    "status": "reviewed",
+    "status": "thin",
     "as_of": "2026-09-25",
-    "note": "Same-card pairs. Item price only, not delivery. For each card, the middle PCG pristine divided by the middle PSA 10. The multiplier is the middle of those cards.",
+    "min_cards": 8,
+    "note": "Same-card pairs only. Item price, not delivery. Three cards is not enough to price the Gengar. Add pairs until there are at least 8 cards.",
     "sales": [
       {
         "date": null,
