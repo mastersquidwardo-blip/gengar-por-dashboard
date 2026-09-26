@@ -150,3 +150,42 @@ td.hl { color: var(--teal); font-weight: 600; }
   margin-bottom: 18px;
 }
 .callout.refresh strong { color: var(--teal); }
+
+.formula-label {
+  margin: 4px 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.links { margin: 8px 0 0; font-size: 12px; }
+.links a, .sku-table a, .comp-review a {
+  color: var(--teal);
+  text-decoration: none;
+}
+.links a:hover, .sku-table a:hover, .comp-review a:hover { text-decoration: underline; }
+
+.sku-table .tiny { color: var(--muted); font-size: 12px; }
+.sku-table td.no { color: var(--warn); }
+.sku-table tr.out td { color: var(--muted); }
+.sku-table tr.out td:first-child { color: var(--warn); }
+
+.comp-review {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.comp-review h3 { margin: 0 0 6px; font-size: 1rem; }
+.comp-review .lead { margin: 0 0 10px; color: var(--muted); font-size: 14px; }
+.comp-review .empty {
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  background: rgba(255,255,255,.02);
+  font-size: 14px;
+}
+.comp-review .keep { color: var(--ok); font-weight: 600; }
+.comp-review .drop { color: var(--danger); font-weight: 600; }

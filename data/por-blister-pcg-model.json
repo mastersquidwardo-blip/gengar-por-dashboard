@@ -285,5 +285,83 @@
     "psa10_extrapolate_immature": 685.61,
     "pcg_base_point": 161.14,
     "note": "Plain blister median $8.83; TCG empty; GemRate pop up (Pristine 3 exist, still unsold). PSA ~$686 / PCG ~$161 hold."
+  },
+  "skus": [
+    {
+      "id": "por-blister",
+      "name": "Perfect Order blister cosmos",
+      "number": "050/088",
+      "role": "The card this page prices",
+      "counts": true,
+      "sold_note": "Raw copies are selling. No PSA 10, CGC 10, or pristine copy has sold as of Sep 24.",
+      "gemrate": "https://www.gemrate.com/population-trend?grader=cgc&category=tcg-cards&year=2026&set_name=Pokemon+Por+EN-Perfect+Order&name=Gengar&card_number=050&parallel=Cosmos+Holo",
+      "ebay_query": "Pokemon Gengar (050 OR 050/088 OR 50/88) (\"Perfect Order\" OR POR) (cosmos OR blister) -GameStop -\"EB Games\" -stamped -stamp"
+    },
+    {
+      "id": "por-holo",
+      "name": "Perfect Order regular holo",
+      "number": "050/088",
+      "role": "Pack holo used in the PSA guess",
+      "counts": true,
+      "sold_note": "Sold search for this printing.",
+      "gemrate": "https://www.gemrate.com/population-trend?grader=psa&category=tcg-cards&year=2026&set_name=Pokemon+Por+EN-Perfect+Order&name=Gengar&card_number=050&parallel=Holofoil",
+      "ebay_query": "Pokemon Gengar (050/088 OR 50/88) (\"Perfect Order\" OR POR) (holo OR holofoil) -reverse -cosmos -blister -GameStop -stamp -stamped"
+    },
+    {
+      "id": "por-reverse",
+      "name": "Perfect Order reverse holo",
+      "number": "050/088",
+      "role": "Reverse holo used to judge how far along the set is",
+      "counts": true,
+      "sold_note": "Sold search for this printing.",
+      "gemrate": "https://www.gemrate.com/population-trend?grader=psa&category=tcg-cards&year=2026&set_name=Pokemon+Por+EN-Perfect+Order&name=Gengar&card_number=050&parallel=Reverse+Holo",
+      "ebay_query": "Pokemon Gengar (050/088 OR 50/88) (\"Perfect Order\" OR POR) reverse -cosmos -GameStop -stamp -stamped"
+    },
+    {
+      "id": "151-holo",
+      "name": "151 regular holo",
+      "number": "094/165",
+      "role": "Older regular holo the guess is compared with",
+      "counts": true,
+      "sold_note": "Sold search for this printing.",
+      "gemrate": "https://www.gemrate.com/population-trend?grader=psa&category=tcg-cards&year=2023&set_name=Pokemon+Mew+EN-151&name=Gengar&card_number=094&parallel=Holofoil",
+      "ebay_query": "Pokemon Gengar (094/165 OR 94/165) 151 (holo OR holofoil) -reverse -cosmos -\"mini tin\" -\"master ball\""
+    },
+    {
+      "id": "151-reverse",
+      "name": "151 reverse holo",
+      "number": "094/165",
+      "role": "Older reverse holo the guess is compared with",
+      "counts": true,
+      "sold_note": "Sold search for this printing.",
+      "gemrate": "https://www.gemrate.com/population-trend?grader=psa&category=tcg-cards&year=2023&set_name=Pokemon+Mew+EN-151&name=Gengar&card_number=094&parallel=Reverse+Holo",
+      "ebay_query": "Pokemon Gengar (094/165 OR 94/165) 151 reverse -cosmos -\"master ball\" -\"poke ball\""
+    },
+    {
+      "id": "151-cosmos",
+      "name": "151 cosmos (Sam's Club mini tin)",
+      "number": "094/165",
+      "role": "Older cosmos card. Same idea, thinner supply",
+      "counts": true,
+      "sold_note": "Sold search for the mini-tin cosmos, not the pack holo.",
+      "gemrate": "https://www.gemrate.com/population-trend?grader=psa&category=tcg-cards&year=2023&set_name=Pokemon+Mew+EN-151&name=Gengar&card_number=094&parallel=Cosmos+Holo",
+      "ebay_query": "Pokemon Gengar (094 OR 94/165) 151 (cosmos OR \"mini tin\" OR \"Sam's Club\" OR \"Sams Club\")"
+    },
+    {
+      "id": "por-stamp",
+      "name": "GameStop / EB Games stamp",
+      "number": "050/088",
+      "role": "Do not use. The store stamp is a different card",
+      "counts": false,
+      "sold_note": "These sales are real, and they do not count for the blister price.",
+      "gemrate": "https://www.gemrate.com/population-trend?grader=psa&category=tcg-cards&year=2026&set_name=Pokemon+Por+EN-Perfect+Order&name=Gengar&card_number=050&parallel=Gamestop+Exclusive",
+      "ebay_query": "Pokemon Gengar 050 (\"Perfect Order\" OR POR) (GameStop OR \"EB Games\") (stamp OR stamped OR exclusive)"
+    }
+  ],
+  "pcg_ebay_comp_review": {
+    "status": "empty",
+    "as_of": null,
+    "note": "Real eBay sales belong here after they are checked. The grid above stays a formula until then.",
+    "sales": []
   }
 }

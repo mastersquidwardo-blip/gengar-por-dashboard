@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>POR Gengar #050 — Blister Cosmos Predictive Path</title>
-  <meta name="description" content="Most-likely valuation path for Perfect Order Gengar blister cosmos PSA 10 and PCG Pristine 10" />
+  <title>POR Gengar #050 — Blister cosmos price path</title>
+  <meta name="description" content="Plain-English price path for the Perfect Order Gengar blister cosmos: PSA 10 and PCG pristine guesses, with the charts kept." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20260925c" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
-  <script src="app.js" defer></script>
+  <script src="app.js?v=20260925c" defer></script>
 </head>
 <body>
   <div class="bg-glow" aria-hidden="true"></div>
@@ -19,49 +19,49 @@
       <span class="ghost">◈</span>
       <div>
         <p class="eyebrow">Gengar 050 · Perfect Order</p>
-        <h1>Blister cosmos predictive path</h1>
+        <h1>Blister cosmos price path</h1>
       </div>
     </div>
     <div class="meta">
-      <span class="pill">Blister only</span>
-      <span class="pill warn">GS / EB void</span>
+      <span class="pill">Blister packs only</span>
+      <span class="pill warn">Store stamp is a different card</span>
       <span class="pill muted" id="asOf">as of —</span>
     </div>
   </header>
 
   <section class="callout refresh" id="refreshNote"></section>
   <section class="callout void">
-    <strong>GameStop / EB Games stamped ~$700–825 PSA 10 is VOID</strong>
-    for this target. Those price a stamp exclusivity channel, not blister pack cosmos.
+    <strong>GameStop and EB Games stamped PSA 10s around $700–$825 do not count.</strong>
+    That price is for the store stamp, not a card from a blister pack.
   </section>
 
   <section class="kpis" id="kpis">
     <article class="kpi primary">
-      <p class="label">Most likely PSA 10</p>
+      <p class="label">Best guess, PSA 10</p>
       <p class="value" id="kpiPsa">—</p>
-      <p class="sub" id="kpiPsaSub">immature launch path</p>
+      <p class="sub" id="kpiPsaSub">Early market</p>
     </article>
     <article class="kpi">
-      <p class="label">Most likely PCG Pristine 10</p>
+      <p class="label">Best guess, PCG pristine</p>
       <p class="value" id="kpiPcg">—</p>
-      <p class="sub" id="kpiPcgSub">k=0.70 · +15% FTM</p>
+      <p class="sub" id="kpiPcgSub">Fair band</p>
     </article>
     <article class="kpi">
-      <p class="label">Maturity clip</p>
+      <p class="label">How far along</p>
       <p class="value" id="kpiMat">—</p>
-      <p class="sub">POR RH/H vs 151 mature</p>
+      <p class="sub">Reverse holo versus the older 151 set</p>
     </article>
     <article class="kpi">
-      <p class="label">Confidence</p>
+      <p class="label">How sure</p>
       <p class="value small" id="kpiConf">—</p>
-      <p class="sub">n=0 blister PSA 10 solds</p>
+      <p class="sub">No blister PSA 10 has sold</p>
     </article>
   </section>
 
   <section class="panel">
     <div class="panel-head">
-      <h2>Most likely path</h2>
-      <p>Immature launch → RH matures → full 151-style cosmos premium. Dual series for PSA 10 vs PCG Pristine.</p>
+      <h2>Where the price might go</h2>
+      <p>The left side is the early market, which is what we would quote today. The middle is when reverse holos start to pull away from regular holos. The right side is a settled market, like the older 151 cosmos cards.</p>
     </div>
     <div class="chart-wrap">
       <canvas id="pathChart" height="120"></canvas>
@@ -72,8 +72,8 @@
   <div class="grid-2">
     <section class="panel">
       <div class="panel-head">
-        <h2>PSA 10 scenario ladder</h2>
-        <p>Extrapolations only — no blister cosmos PSA 10 comps yet.</p>
+        <h2>PSA 10 guesses, low to high</h2>
+        <p>None of these are sold prices. No blister PSA 10 has sold yet.</p>
       </div>
       <div class="chart-wrap short">
         <canvas id="psaLadder"></canvas>
@@ -81,8 +81,8 @@
     </section>
     <section class="panel">
       <div class="panel-head">
-        <h2>PCG scenario matrix</h2>
-        <p>Immature CGCP blend × k_pcg × (1+ftm)</p>
+        <h2>PCG price grid</h2>
+        <p>This grid is a formula, not a list of sold prices. The highlighted row is the one we quote. Real eBay sales get reviewed underneath it.</p>
       </div>
       <div class="table-wrap">
         <table id="pcgMatrix">
@@ -90,31 +90,53 @@
           <tbody></tbody>
         </table>
       </div>
+      <div class="comp-review" id="compReview"></div>
     </section>
   </div>
 
   <section class="panel">
     <div class="panel-head">
-      <h2>151 → POR bridge</h2>
-      <p>Weighted stack and maturity-clipped cosmos premium.</p>
+      <h2>Cards this guess is built from</h2>
+      <p>151 is the older Gengar. Perfect Order is this set. We use those sold prices because this blister card has no top-grade sales of its own.</p>
     </div>
     <div class="bridge" id="bridge"></div>
+    <p class="formula-label">The math, if you want it</p>
     <div class="formula" id="formula"></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Each printing, with its population and its sales</h2>
+      <p>GemRate is how many copies have been graded. eBay is sold listings for that printing. Open the eBay link even when we have not found a top-grade sale yet.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="sku-table" id="skuTable">
+        <thead>
+          <tr>
+            <th>Printing</th>
+            <th>Why it is here</th>
+            <th>Links</th>
+            <th>Sales</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </section>
 
   <div class="grid-2">
     <section class="panel">
-      <div class="panel-head"><h2>Assumptions</h2></div>
+      <div class="panel-head"><h2>What we are assuming</h2></div>
       <ul class="bullets" id="assumptions"></ul>
     </section>
     <section class="panel">
-      <div class="panel-head"><h2>What invalidates</h2></div>
+      <div class="panel-head"><h2>What would change the guess</h2></div>
       <ul class="bullets danger" id="invalidators"></ul>
     </section>
   </div>
 
   <footer class="foot">
-    <p>Model JSON: <code>data/por-blister-pcg-model.json</code> · Built for Karthik · Not financial advice</p>
+    <p>Numbers: <code>data/por-blister-pcg-model.json</code> · Built for Karthik · Not financial advice</p>
   </footer>
 </body>
 </html>
