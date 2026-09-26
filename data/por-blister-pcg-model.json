@@ -359,9 +359,90 @@
     }
   ],
   "pcg_ebay_comp_review": {
-    "status": "empty",
-    "as_of": null,
-    "note": "Real eBay sales belong here after they are checked. The grid above stays a formula until then.",
-    "sales": []
+    "status": "reviewed",
+    "as_of": "2026-09-25",
+    "note": "Same-card pairs. Item price only, not delivery. For each card, the middle PCG pristine divided by the middle PSA 10. The multiplier is the middle of those cards.",
+    "sales": [
+      {
+        "date": null,
+        "card": "Mega Gardevoir ex #032",
+        "grade": "PCG Pristine 10",
+        "title": "2026 Mega Black Star Promo Mega Gardevoir ex 032 PCG Pristine",
+        "price": 99,
+        "url": "",
+        "keep": true,
+        "note": "Pasted with the pristine prices. No separate sold date on this line."
+      },
+      {
+        "date": null,
+        "card": "Mega Gardevoir ex #032",
+        "grade": "PCG Pristine 10",
+        "title": "2026 Mega Black Star Promo Mega Gardevoir ex 032 PCG Pristine",
+        "price": 84,
+        "url": "",
+        "keep": true,
+        "note": "Best offer accepted. No separate sold date on this line."
+      },
+      {
+        "date": "2026-08-06",
+        "card": "Mega Gardevoir ex #032",
+        "grade": "PSA 10",
+        "title": "MEGA GARDEVOIR EX PSA 10 GEM MINT 2026 POKEMON MEP EN-ME BLACK STAR PROMO #032",
+        "price": 79.99,
+        "url": "",
+        "keep": true,
+        "note": "Buy It Now. Sold label Aug 6, 2026. The listing clock also showed 01 Aug 26 00:51."
+      },
+      {
+        "date": "2026-08-13",
+        "card": "Nami OP11-041 alt leader",
+        "grade": "PCG Pristine 10",
+        "title": "Nami OP11-041 (Alternate Art) Leader PCG Pristine 10 Player's Slim Slab",
+        "price": 159.99,
+        "url": "",
+        "keep": true,
+        "note": "Sold Thu Aug 13, 2026, 8:50 AM."
+      },
+      {
+        "date": "2026-08-31",
+        "card": "Nami OP11-041 alt leader",
+        "grade": "PSA 10",
+        "title": "Nami (041) (Alternate Art) OP11-041 A Fist of Divine Speed Foil PSA 10 GEM MINT",
+        "price": 119.99,
+        "url": "",
+        "keep": true,
+        "note": "Buy It Now. Delivery was $6.07 extra and is not in the price."
+      },
+      {
+        "date": "2026-09-24",
+        "card": "Nami OP11-041 alt leader",
+        "grade": "PSA 10",
+        "title": "PSA 10 Nami ALTERNATE ART OP11-041 2025 One Piece Leader English",
+        "price": 100,
+        "url": "",
+        "keep": true,
+        "note": "31 bids. Delivery was $5.58 extra and is not in the price."
+      },
+      {
+        "date": "2026-08-13",
+        "card": "Boa Hancock OP14-041 alt leader",
+        "grade": "PCG Pristine 10",
+        "title": "Boa Hancock OP14-041 (Alternate Art) Leader PCG Pristine 10 Player's Slim Slab",
+        "price": 174.99,
+        "url": "",
+        "keep": true,
+        "note": "Sold Thu Aug 13, 2026, 7:52 AM."
+      },
+      {
+        "date": "2026-09-17",
+        "card": "Boa Hancock OP14-041 alt leader",
+        "grade": "PSA 10",
+        "title": "One Piece 2026 Boa Hancock OP14-041 Alternate Art OP14-EB04 GEM MINT PSA 10",
+        "price": 145.5,
+        "url": "",
+        "keep": true,
+        "note": "21 bids. Delivery was $5.50 extra and is not in the price."
+      }
+    ]
   }
 }

@@ -189,3 +189,13 @@ td.hl { color: var(--teal); font-weight: 600; }
 }
 .comp-review .keep { color: var(--ok); font-weight: 600; }
 .comp-review .drop { color: var(--danger); font-weight: 600; }
+.comp-formula {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(77, 225, 193, .08);
+  border: 1px solid rgba(77, 225, 193, .28);
+  color: #d7fff4;
+  font-size: 14px;
+}
+.comp-formula strong { color: var(--teal); }

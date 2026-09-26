@@ -35,6 +35,57 @@ function ebaySold(query) {
   return `https://www.ebay.com/sch/i.html?${params.toString()}`;
 }
 
+function median(nums) {
+  const sorted = [...nums].filter((n) => Number.isFinite(n)).sort((a, b) => a - b);
+  if (!sorted.length) return null;
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+}
+
+function price(n) {
+  const num = Number(n);
+  if (!Number.isFinite(num)) return "—";
+  const digits = Number.isInteger(num) ? 0 : 2;
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+  }).format(num);
+}
+
+function times(n) {
+  if (n == null || Number.isNaN(n)) return "—";
+  return `${n.toFixed(2)}×`;
+}
+
+function pcgOverPsa(sales) {
+  const kept = (sales || []).filter((sale) => sale && sale.keep !== false && sale.card && Number.isFinite(Number(sale.price)));
+  const byCard = new Map();
+  kept.forEach((sale) => {
+    const grade = String(sale.grade || "");
+    const bucket = grade.startsWith("PCG") ? "pcg" : grade.startsWith("PSA") ? "psa" : null;
+    if (!bucket) return;
+    if (!byCard.has(sale.card)) byCard.set(sale.card, { pcg: [], psa: [] });
+    byCard.get(sale.card)[bucket].push(Number(sale.price));
+  });
+  const cards = [];
+  byCard.forEach((prices, name) => {
+    if (!prices.pcg.length || !prices.psa.length) return;
+    const pcg = median(prices.pcg);
+    const psa = median(prices.psa);
+    cards.push({ name, pcg, psa, ratio: pcg / psa });
+  });
+  cards.sort((a, b) => a.ratio - b.ratio);
+  const ratios = cards.map((card) => card.ratio);
+  return {
+    cards,
+    multiplier: median(ratios),
+    low: ratios.length ? ratios[0] : null,
+    high: ratios.length ? ratios[ratios.length - 1] : null,
+  };
+}
+
 function linkPair(sku) {
   const ebay = ebaySold(sku.ebay_query);
   return `<a href="${sku.gemrate}" target="_blank" rel="noopener">GemRate</a>
@@ -68,13 +119,17 @@ async function main() {
 
   document.getElementById("kpiPsa").textContent = money(psa.immature);
   document.getElementById("kpiPsaSub").textContent = `Low about ${money(psa.via_RH)}. Settled market about ${money(psa.geo_mature)}.`;
+  const comp = pcgOverPsa(m.pcg_ebay_comp_review && m.pcg_ebay_comp_review.sales);
   document.getElementById("kpiPcg").textContent = money(rec.base_point);
-  document.getElementById("kpiPcgSub").textContent = `Fair band ${money(rec.base_range[0])}–${money(rec.base_range[1])}`;
+  document.getElementById("kpiPcgSub").textContent = comp.multiplier
+    ? `Older CGC formula, band ${money(rec.base_range[0])}–${money(rec.base_range[1])}. Sold comps say ${times(comp.multiplier)} a PSA 10, about ${money(psa.immature * comp.multiplier)}.`
+    : `Fair band ${money(rec.base_range[0])}–${money(rec.base_range[1])}`;
   document.getElementById("kpiMat").textContent = derived.maturity_clipped.toFixed(2);
   document.getElementById("kpiConf").textContent = plainConfidence(rec.confidence);
 
-  document.getElementById("pathNote").textContent =
-    "Quote the early-market number. The PCG line sits below a CGC pristine on purpose: about 70% of that price, plus a small bump because these would be some of the first ones for sale. That bump should fade.";
+  document.getElementById("pathNote").textContent = comp.multiplier
+    ? `The lower PCG line is the older formula: about 70% of a CGC pristine, plus a small first-sale bump. The upper PCG line applies these sold comps: a PCG pristine at ${times(comp.multiplier)} the PSA 10 guess. These comps are other cards, not this blister Gengar.`
+    : "Quote the early-market number. The PCG line sits below a CGC pristine on purpose: about 70% of that price, plus a small bump because these would be some of the first ones for sale. That bump should fade.";
 
   const psaPath = [
     psa.immature,
@@ -107,15 +162,28 @@ async function main() {
           pointBackgroundColor: "#c4a6ff",
         },
         {
-          label: "PCG pristine guess",
+          label: "PCG from the CGC formula",
           data: pcgPath,
           borderColor: "#4de1c1",
           backgroundColor: "rgba(77,225,193,.12)",
-          fill: true,
+          fill: false,
           tension: 0.28,
           pointRadius: 5,
           pointBackgroundColor: "#4de1c1",
         },
+        ...(comp.multiplier
+          ? [{
+              label: "PCG if it sells like these comps",
+              data: psaPath.map((value) => value * comp.multiplier),
+              borderColor: "#ffb454",
+              backgroundColor: "transparent",
+              borderDash: [6, 4],
+              fill: false,
+              tension: 0.28,
+              pointRadius: 5,
+              pointBackgroundColor: "#ffb454",
+            }]
+          : []),
       ],
     },
     options: {
@@ -208,7 +276,7 @@ async function main() {
     })
     .join("");
 
-  renderCompReview(m.pcg_ebay_comp_review);
+  renderCompReview(m.pcg_ebay_comp_review, comp, psa.immature);
 
   const card = (id, title, big, tiny) => {
     const sku = skuById[id];
@@ -230,7 +298,10 @@ async function main() {
     "Early PSA 10 = this set's regular-holo PSA 10 × (1 + (cosmos premium − 1) × how far along) = " + money(psa.immature) + ".",
     "CGC pristine blend = 40% from the raw price + 35% from the PSA price × a grade ratio + 25% from the PSA price × the pristine/PSA ratio = " + money(rec.cgcp_blend_immature) + ".",
     "PCG quote = that blend × 0.70 × 1.15 = " + money(rec.base_point) + ".",
-  ].join("\n");
+    comp.multiplier
+      ? "Sold-comp quote = PSA 10 × the middle same-card ratio (" + times(comp.multiplier) + ") = " + money(psa.immature * comp.multiplier) + " on the early PSA guess. Card ratios run " + times(comp.low) + " to " + times(comp.high) + "."
+      : "",
+  ].filter(Boolean).join("\n");
 
   const skuBody = document.querySelector("#skuTable tbody");
   skuBody.innerHTML = skus
@@ -269,17 +340,20 @@ async function main() {
     .join("");
 }
 
-function renderCompReview(review) {
+function renderCompReview(review, comp, psaEarly) {
   const box = document.getElementById("compReview");
   if (!box) return;
   const sales = review && Array.isArray(review.sales) ? review.sales : [];
   const note = (review && review.note) || "Real eBay sales belong here after they are checked.";
-  if (!sales.length) {
+  if (!sales.length || !comp || !comp.multiplier) {
     box.innerHTML = `<h3>Reviewed eBay sales</h3>
       <p class="lead">${note}</p>
       <p class="empty">Nothing reviewed yet. When sold comps are written into the price file, each sale shows here with the date, the price, the listing, and whether it counts.</p>`;
     return;
   }
+  const cardLines = comp.cards
+    .map((card) => `${card.name}: ${price(card.pcg)} ÷ ${price(card.psa)} = ${times(card.ratio)}`)
+    .join(". ");
   const body = sales
     .map((sale) => {
       const counts = sale.keep ? `<span class="keep">Counts</span>` : `<span class="drop">Leave out</span>`;
@@ -288,17 +362,20 @@ function renderCompReview(review) {
         : (sale.title || "Listing");
       return `<tr>
         <td>${sale.date || "—"}</td>
+        <td>${sale.card || "—"}</td>
+        <td>${sale.grade || "—"}</td>
         <td>${title}</td>
-        <td>${money(sale.price)}</td>
+        <td>${price(sale.price)}</td>
         <td>${counts}</td>
         <td>${sale.note || ""}</td>
       </tr>`;
     })
     .join("");
   box.innerHTML = `<h3>Reviewed eBay sales</h3>
+    <p class="comp-formula"><strong>PCG pristine = ${times(comp.multiplier)} the same card's PSA 10.</strong> ${cardLines}. On the early Gengar PSA guess, that is about ${money(psaEarly * comp.multiplier)}, and the three cards span about ${money(psaEarly * comp.low)} to ${money(psaEarly * comp.high)}. These are other cards. None of them is the blister Gengar.</p>
     <p class="lead">${note}</p>
     <div class="table-wrap"><table>
-      <thead><tr><th>Date</th><th>Listing</th><th>Price</th><th>Use it?</th><th>Why</th></tr></thead>
+      <thead><tr><th>Date</th><th>Card</th><th>Grade</th><th>Listing</th><th>Price</th><th>Use it?</th><th>Why</th></tr></thead>
       <tbody>${body}</tbody>
     </table></div>`;
 }
