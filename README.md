@@ -1,33 +1,51 @@
-# Gengar blister price note
+# Gengar POR Blister Cosmos — Predictive Path Dashboard
 
-A plain-English page for one card: the English **Perfect Order Gengar #050** cosmos holo from **blister packs**. Not the GameStop or EB Games stamped card.
+Static dashboard for the **most likely valuation path** of:
 
-Two guesses, checked September 24, 2026:
+**2026 Perfect Order EN Gengar `#050/088` blister cosmos holo**
 
-- **Top PSA 10:** about **$686**, while supply is still early
-- **Top PCG gem** (pristine-style): about **$161**
+Tracks extrapolated **PSA 10** and **PCG Pristine 10** (9.5 / 10 / 10 / 10).
 
-No top-grade blister copy has sold yet, so confidence is low to moderate.
+> **Blister only.** GameStop / EB Games stamped comps (~$700–825 PSA 10) are **void** for this target.
 
-The blister hit shelves with Pitch Black on **July 17, 2026**. By late September that is about two months of packs in the wild. PSA 10s for a new set often take 4 to 5 months to start showing up. CGC copies are already appearing. A batch of 20 cards received by PCG on September 11 should come back around mid-October if a 35-day wait holds.
+## Live quotes (model as of 2026-09-16)
 
-On this page, “release” means when the product hit shelves.
+| Metric | Most likely |
+|--------|-------------|
+| PSA 10 (immature path) | **~$685** (ladder ~$545–$840) — unchanged |
+| PCG Pristine 10 | **~$164** (base range ~$143–$185) |
+| Blister raw | eBay singles med **~$10** · TCGPlayer market **~$6.51** |
+| Graded blister gems | **0** sold matches found |
+| Confidence | Low–moderate |
 
-The shelf date is July 17, 2026, the day Pitch Black went on sale at retail. That lines up with this price check: September 24, 2026 is about two months later.
+### Sep 24 refresh
+- eBay plain blister median **$8.83** (n=27); swirl median **$10** (n=8)
+- TCGPlayer: **no listings**
+- GemRate CGC pop **18** (Pristine **3**, Gems+ **7**, gem rate **38.9%**) — still **0** sales
+- Still **0** blister PSA/CGC/TAG gem solds on eBay
+- PSA 10 extrapolate **~$686** (flat); PCG Pristine base **~$161** (band ~$145–$180)
 
-## See it
+### Sep 16 refresh
+- Pulled 50 eBay sold blister results (47 singles after dropping 4-card lots)
+- TCGPlayer product `709697`: market $6.51 (−63% on chart), 0 live listings
+- No blister PSA/CGC/TAG 10 solds — PSA extrapolation still unconfirmed by prints
 
-https://mastersquidwardo-blip.github.io/gengar-por-dashboard/
+## View locally
 
 ```bash
 python3 -m http.server 8080
 # open http://localhost:8080
 ```
 
-## Files
+## GitHub Pages
 
-- `index.html`, `app.js`, `styles.css` — the page
-- `data/por-blister-pcg-model.json` — the price numbers the page reads
-- `data/por-blister-pcg-model.md` — background notes, if you want the math
+`https://mastersquidwardo-blip.github.io/gengar-por-dashboard/`
 
-GitHub Pages serves the page as-is. Nothing to build.
+## Data
+
+- `data/por-blister-pcg-model.json` — machine-readable model
+- `data/por-blister-pcg-model.md` — full notes / formulas (Sep 10 writeup; JSON is fresher)
+
+## Stack
+
+Zero-build: HTML + CSS + Chart.js (CDN).

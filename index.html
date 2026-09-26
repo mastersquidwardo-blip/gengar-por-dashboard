@@ -3,206 +3,118 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gengar #050 blister price guesses</title>
-  <meta name="description" content="Plain-English price guesses for the Perfect Order Gengar #050 cosmos holo from blister packs: about $686 for a top PSA 10 and about $161 for a top PCG gem." />
+  <title>POR Gengar #050 — Blister Cosmos Predictive Path</title>
+  <meta name="description" content="Most-likely valuation path for Perfect Order Gengar blister cosmos PSA 10 and PCG Pristine 10" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,680&family=Nunito+Sans:opsz,wght@6..12,420;6..12,650;6..12,800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260926" />
-  <script src="app.js?v=20260926" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="app.js" defer></script>
 </head>
 <body>
-  <div class="page">
-    <p id="load-error" class="callout" hidden></p>
-
-    <header class="top">
-      <div class="ghost" aria-hidden="true">
-        <svg viewBox="0 0 64 64" width="46" height="46">
-          <path fill="currentColor" d="M32 6c-12.2 0-21 9.2-21 22.2V56l7.2-5.2 5.8 5.4 6-5.6 6 5.6 5.8-5.4 7.2 5.2V28.2C49 15.2 44.2 6 32 6z"/>
-          <circle cx="24.5" cy="30" r="3.2" fill="#fffaf3"/>
-          <circle cx="39.5" cy="30" r="3.2" fill="#fffaf3"/>
-          <path d="M27 40.5c1.8 2.4 8.2 2.4 10 0" fill="none" stroke="#fffaf3" stroke-width="2.2" stroke-linecap="round"/>
-        </svg>
-      </div>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <header class="top">
+    <div class="brand">
+      <span class="ghost">◈</span>
       <div>
-        <p class="kicker">A price note for collectors</p>
-        <h1>Perfect Order Gengar #050</h1>
-        <p class="dek">Cosmos holo · blister packs only</p>
+        <p class="eyebrow">Gengar 050 · Perfect Order</p>
+        <h1>Blister cosmos predictive path</h1>
       </div>
-    </header>
+    </div>
+    <div class="meta">
+      <span class="pill">Blister only</span>
+      <span class="pill warn">GS / EB void</span>
+      <span class="pill muted" id="asOf">as of —</span>
+    </div>
+  </header>
 
-    <section class="block" aria-labelledby="what-heading">
-      <h2 id="what-heading">What this is</h2>
-      <p>We are guessing what two top grades might sell for: a PSA 10, and a PCG gem. The card is the English Perfect Order Gengar #050, cosmos holo, and only the copy from a blister pack.</p>
-      <p id="release-means">On this page, release means when the packs hit shelves — the day a collector could buy one — not a stock-market listing.</p>
-      <p>These blisters showed up with Pitch Black on July 17, 2026. As of <time data-fill="checked" datetime="2026-09-24">September 24, 2026</time>, that is about two months of packs in the wild.</p>
-    </section>
+  <section class="callout refresh" id="refreshNote"></section>
+  <section class="callout void">
+    <strong>GameStop / EB Games stamped ~$700–825 PSA 10 is VOID</strong>
+    for this target. Those price a stamp exclusivity channel, not blister pack cosmos.
+  </section>
 
-    <section class="block" aria-labelledby="guess-heading">
-      <h2 id="guess-heading">The two price guesses</h2>
-      <p class="lede">Both numbers are for the early market, while supply is still new and top grades have barely started to exist.</p>
+  <section class="kpis" id="kpis">
+    <article class="kpi primary">
+      <p class="label">Most likely PSA 10</p>
+      <p class="value" id="kpiPsa">—</p>
+      <p class="sub" id="kpiPsaSub">immature launch path</p>
+    </article>
+    <article class="kpi">
+      <p class="label">Most likely PCG Pristine 10</p>
+      <p class="value" id="kpiPcg">—</p>
+      <p class="sub" id="kpiPcgSub">k=0.70 · +15% FTM</p>
+    </article>
+    <article class="kpi">
+      <p class="label">Maturity clip</p>
+      <p class="value" id="kpiMat">—</p>
+      <p class="sub">POR RH/H vs 151 mature</p>
+    </article>
+    <article class="kpi">
+      <p class="label">Confidence</p>
+      <p class="value small" id="kpiConf">—</p>
+      <p class="sub">n=0 blister PSA 10 solds</p>
+    </article>
+  </section>
 
-      <div class="hero">
-        <article class="hero-card psa">
-          <p class="label">Top PSA 10</p>
-          <p class="value" data-fill="psa-early">$686</p>
-          <p class="mean">Guess while supply is still early</p>
-          <p class="fine">What we would tell a friend to expect for a PSA 10 today.</p>
-        </article>
-        <article class="hero-card pcg">
-          <p class="label">Top PCG gem</p>
-          <p class="value" data-fill="pcg-early">$161</p>
-          <p class="mean">Guess while supply is still early</p>
-          <p class="fine">Pristine-style slab: 9.5 on centering, 10s on the rest.</p>
-        </article>
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Most likely path</h2>
+      <p>Immature launch → RH matures → full 151-style cosmos premium. Dual series for PSA 10 vs PCG Pristine.</p>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="pathChart" height="120"></canvas>
+    </div>
+    <div class="legend-note" id="pathNote"></div>
+  </section>
+
+  <div class="grid-2">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>PSA 10 scenario ladder</h2>
+        <p>Extrapolations only — no blister cosmos PSA 10 comps yet.</p>
       </div>
-
-      <p class="sureline">
-        <strong data-fill="confidence">Low to moderate</strong> confidence.
-        No top-grade blister copy has sold yet. These are guesses, not sold prices.
-      </p>
-
-      <div class="story" aria-label="Early guess compared with where similar cards landed later">
-        <article class="story-card">
-          <p class="kicker">Guess while supply is still early</p>
-          <p class="row"><span>PSA 10</span> <strong data-fill="psa-early">$686</strong></p>
-          <p class="row"><span>PCG gem</span> <strong data-fill="pcg-early">$161</strong></p>
-          <p class="fine">The numbers we would quote today.</p>
-        </article>
-        <p class="then" aria-hidden="true">then</p>
-        <article class="story-card later">
-          <p class="kicker">Where similar cards landed once the market settled</p>
-          <p class="row"><span>PSA 10</span> <strong data-fill="psa-later">$844</strong></p>
-          <p class="row"><span>PCG gem</span> <strong data-fill="pcg-later">$193</strong></p>
-          <p class="fine">Where similar cards landed once buyers had real top-grade sales. Not a promise this card gets there.</p>
-        </article>
-      </div>
-
-      <div class="notes">
-        <p>Other PSA comparisons land near <strong data-fill="psa-low">$541</strong> on the low side, and about <strong data-fill="psa-high">$1,316</strong> if you stretch them. We would not quote either of those as the main guess.</p>
-        <p>Around the PCG guess, a fair band is <strong data-fill="pcg-band-low">$140</strong> to <strong data-fill="pcg-band-high">$182</strong>. The <span data-fill="pcg-early">$161</span> figure includes a small bump because these would be some of the first top PCG grades people can buy. A cautious read is about <strong data-fill="pcg-cautious">$110</strong>. If early buyers chase them hard, about <strong data-fill="pcg-hot">$221</strong>.</p>
+      <div class="chart-wrap short">
+        <canvas id="psaLadder"></canvas>
       </div>
     </section>
-
-    <section class="block" aria-labelledby="sure-heading">
-      <h2 id="sure-heading">How sure we are</h2>
-      <p class="lede">Low to moderate. We still have not found a real sale of a top-grade blister copy.</p>
-      <p>No sold PSA 10. No sold CGC 10. No sold pristine-style gem. Not for the plain blister card.</p>
-      <p id="grade-count">CGC has already graded some copies, including a few at the very top. None of those top blister copies have sold.</p>
-      <p>The raw cards are selling, so that part is real. The prices for the best slabs are still a guess, built from those raw sales and from older, similar cards.</p>
-      <h3>What we looked at</h3>
-      <ul>
-        <li>eBay sales of raw blister copies, split into plain and swirl</li>
-        <li>TCGPlayer, which often has no copies up for sale</li>
-        <li>How many copies CGC has graded, and that the top ones have not sold</li>
-        <li>PSA 10 prices for this set’s regular holo and reverse holo Gengar</li>
-        <li>How an older cosmos Gengar, from the 151 set, behaved once graded copies had actually sold</li>
-      </ul>
-    </section>
-
-    <section class="block" aria-labelledby="time-heading">
-      <h2 id="time-heading">When grades tend to show up</h2>
-      <p id="timeline-intro">Grades do not all show up the week a product hits shelves. Here is the order of events.</p>
-
-      <div class="life">
-        <div class="life-bar" role="img" aria-label="About two months after the packs hit shelves in July. PSA 10s often start around four to five months later, roughly November into December.">
-          <div class="life-fill"></div>
-          <div class="life-zone"></div>
-          <div class="life-pin"><span>You are here</span></div>
-        </div>
-        <div class="life-ends">
-          <span>July 17<br>Packs hit shelves</span>
-          <span>Month 4 to 5<br>PSA 10s often start</span>
-        </div>
-        <p class="life-note">CGC copies are already showing up, ahead of the usual wait for PSA 10s. A batch of 20 cards received by PCG on September 11 should come back around mid-October if a 35-day wait holds.</p>
+    <section class="panel">
+      <div class="panel-head">
+        <h2>PCG scenario matrix</h2>
+        <p>Immature CGCP blend × k_pcg × (1+ftm)</p>
       </div>
-
-      <ol class="steps" id="steps">
-        <li class="step past">
-          <div class="rail"><span class="dot"></span><span class="line"></span></div>
-          <div class="step-body">
-            <p class="when">July 17, 2026</p>
-            <h3>The packs hit shelves</h3>
-            <p>Pitch Black blisters went on sale. That is the release: the day the product showed up in stores. This card is the Perfect Order Gengar #050 cosmos holo from those blister packs.</p>
-          </div>
-        </li>
-        <li class="step past">
-          <div class="rail"><span class="dot"></span><span class="line"></span></div>
-          <div class="step-body">
-            <p class="when">September 11, 2026</p>
-            <h3>Twenty cards went in for grading</h3>
-            <p>A batch of 20 of these Gengars was received by PCG. The wait has been slower than people hoped. About 35 days is a fair guess.</p>
-          </div>
-        </li>
-        <li class="step now">
-          <div class="rail"><span class="dot"></span><span class="line"></span></div>
-          <div class="step-body">
-            <p class="when">Late September 2026</p>
-            <h3>You are here</h3>
-            <p>About two months of supply is out. CGC grades are already starting to appear. Top gems from blister-only copies still have no recorded sales. The price guesses on this page are for this early market.</p>
-          </div>
-        </li>
-        <li class="step soon">
-          <div class="rail"><span class="dot"></span><span class="line"></span></div>
-          <div class="step-body">
-            <p class="when">Around mid-October 2026</p>
-            <h3>Those PCG grades should come back</h3>
-            <p>Count about 35 days from September 11. If that holds, the batch of 20 comes back around mid-October.</p>
-          </div>
-        </li>
-        <li class="step later">
-          <div class="rail"><span class="dot"></span><span class="line"></span></div>
-          <div class="step-body">
-            <p class="when">November into December 2026</p>
-            <h3>PSA 10s often start to show</h3>
-            <p>The first PSA 10s for a new set often take about 4 to 5 months after the product hits shelves. From mid-July, that is roughly November into December.</p>
-          </div>
-        </li>
-      </ol>
-    </section>
-
-    <section class="block" aria-labelledby="raw-heading">
-      <h2 id="raw-heading">What raw copies are selling for</h2>
-      <p class="lede">Ungraded cards. eBay sold listings are the prices we trust. TCGPlayer is often empty.</p>
-      <div class="raw-grid">
-        <article class="raw-card">
-          <p class="label">Plain blister</p>
-          <p class="value" data-fill="plain">$8.83</p>
-          <p class="fine">Typical sold price · <span data-fill="plain-count">27</span> recent eBay sales</p>
-          <p class="fine">No swirl in the holo foil. More sales, so this is the stronger read.</p>
-        </article>
-        <article class="raw-card">
-          <p class="label">Swirl</p>
-          <p class="value" data-fill="swirl">$10</p>
-          <p class="fine">Typical sold price · <span data-fill="swirl-count">8</span> recent eBay sales</p>
-          <p class="fine">You can see a swirl in the foil. Fewer sales, so treat this as a rough read.</p>
-        </article>
+      <div class="table-wrap">
+        <table id="pcgMatrix">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
       </div>
-      <p id="tcg-note">TCGPlayer had no listings when we looked. eBay sold prices are the ones we trust.</p>
-      <p class="fine stand">Single sales have run from about <span data-fill="raw-low">$1</span> to about <span data-fill="raw-high">$20</span>.</p>
     </section>
-
-    <section class="block leave-out" aria-labelledby="out-heading">
-      <h2 id="out-heading">What we are not using</h2>
-      <p>We are not using GameStop or EB Games stamped copies. Those PSA 10s sold around $700 to $825 because of the store stamp, and that stamp is a different product from a plain blister card.</p>
-    </section>
-
-    <section class="block" aria-labelledby="change-heading">
-      <h2 id="change-heading">What would change our mind</h2>
-      <p class="lede">The first real sale of a top-grade blister copy — a PSA 10, or a top CGC gem, with no GameStop or EB Games stamp.</p>
-      <p>If that sale lands far from about <span data-fill="psa-early">$686</span> for a PSA 10, or far from about <span data-fill="pcg-early">$161</span> for a top PCG gem, these guesses move.</p>
-      <p>A few other things would move them too:</p>
-      <ul>
-        <li>The typical raw price leaves the roughly $8 to $20 neighborhood and stays outside it.</li>
-        <li>Stamped GameStop or EB Games copies get mixed in with plain blister sales by mistake.</li>
-        <li>Reverse-holo PSA 10s of this set’s Gengar start selling for about twice the regular holo. Then we would lean on the later guesses, about <span data-fill="psa-later">$844</span> and <span data-fill="pcg-later">$193</span>.</li>
-        <li>A real sold price for the older 151 Gengar cosmos in a pristine CGC slab lands far from the rough <span data-fill="guide-151">$240</span> figure we used. Then we would redo the PCG guess.</li>
-      </ul>
-    </section>
-
-    <footer class="foot">
-      <p>Checked <time data-fill="checked" datetime="2026-09-24">September 24, 2026</time>. A collector’s guess to talk through, not financial advice. Built for Karthik.</p>
-    </footer>
   </div>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>151 → POR bridge</h2>
+      <p>Weighted stack and maturity-clipped cosmos premium.</p>
+    </div>
+    <div class="bridge" id="bridge"></div>
+    <div class="formula" id="formula"></div>
+  </section>
+
+  <div class="grid-2">
+    <section class="panel">
+      <div class="panel-head"><h2>Assumptions</h2></div>
+      <ul class="bullets" id="assumptions"></ul>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h2>What invalidates</h2></div>
+      <ul class="bullets danger" id="invalidators"></ul>
+    </section>
+  </div>
+
+  <footer class="foot">
+    <p>Model JSON: <code>data/por-blister-pcg-model.json</code> · Built for Karthik · Not financial advice</p>
+  </footer>
 </body>
 </html>
