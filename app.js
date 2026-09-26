@@ -59,12 +59,13 @@ function times(n) {
   return `${n.toFixed(2)}×`;
 }
 
-function pcgOverPsa(sales) {
+function pcgOverPsa(sales, prefix) {
+  const label = prefix || "PCG";
   const kept = (sales || []).filter((sale) => sale && sale.keep !== false && sale.card && Number.isFinite(Number(sale.price)));
   const byCard = new Map();
   kept.forEach((sale) => {
     const grade = String(sale.grade || "");
-    const bucket = grade.startsWith("PCG") ? "pcg" : grade.startsWith("PSA") ? "psa" : null;
+    const bucket = grade.startsWith(label) ? "pcg" : grade.startsWith("PSA") ? "psa" : null;
     if (!bucket) return;
     if (!byCard.has(sale.card)) byCard.set(sale.card, { pcg: [], psa: [] });
     byCard.get(sale.card)[bucket].push(Number(sale.price));
@@ -120,7 +121,8 @@ async function main() {
   document.getElementById("kpiPsa").textContent = money(psa.immature);
   document.getElementById("kpiPsaSub").textContent = `Low about ${money(psa.via_RH)}. Settled market about ${money(psa.geo_mature)}.`;
   const compReview = m.pcg_ebay_comp_review || {};
-  const comp = pcgOverPsa(compReview.sales);
+  const comp = pcgOverPsa(compReview.sales, "PCG");
+  const cgc = pcgOverPsa(compReview.sales, "CGC");
   const minCards = compReview.min_cards || 8;
   const compReady = comp.cards.length >= minCards;
   document.getElementById("kpiPcg").textContent = money(rec.base_point);
@@ -277,7 +279,7 @@ async function main() {
     })
     .join("");
 
-  renderCompReview(compReview, comp, { ready: compReady, minCards });
+  renderCompReview(compReview, comp, { ready: compReady, minCards, cgc });
 
   const card = (id, title, big, tiny) => {
     const sku = skuById[id];
@@ -300,7 +302,10 @@ async function main() {
     "CGC pristine blend = 40% from the raw price + 35% from the PSA price × a grade ratio + 25% from the PSA price × the pristine/PSA ratio = " + money(rec.cgcp_blend_immature) + ".",
     "PCG quote = that blend × 0.70 × 1.15 = " + money(rec.base_point) + ".",
     comp.multiplier
-      ? "Sold comps so far: " + comp.cards.length + " cards, middle ratio " + times(comp.multiplier) + ", range " + times(comp.low) + " to " + times(comp.high) + ". Not used as the quote until " + minCards + " cards are in."
+      ? "PCG sold comps so far: " + comp.cards.length + " cards, middle ratio " + times(comp.multiplier) + ", range " + times(comp.low) + " to " + times(comp.high) + ". Not used as the quote until " + minCards + " cards are in."
+      : "",
+    cgc.multiplier
+      ? "CGC check: " + cgc.cards.length + " older cards, " + times(cgc.low) + " and " + times(cgc.high) + ". Not averaged into a quote."
       : "",
   ].filter(Boolean).join("\n");
 
@@ -357,9 +362,16 @@ function renderCompReview(review, comp, status) {
   const cardLines = comp.cards
     .map((card) => `${card.name}: ${price(card.pcg)} ÷ ${price(card.psa)} = ${times(card.ratio)}`)
     .join(". ");
+  const cgc = status && status.cgc;
+  const cgcLines = cgc && cgc.cards.length
+    ? cgc.cards.map((card) => `${card.name}: ${price(card.pcg)} ÷ ${price(card.psa)} = ${times(card.ratio)}`).join(". ")
+    : "";
+  const cgcNote = cgc && cgc.multiplier
+    ? `<p class="comp-check"><strong>CGC check on older cards.</strong> ${cgcLines}. Two reads, ${times(cgc.low)} and ${times(cgc.high)}. The Umbreon sales sit far apart, so that card's middle is loose. This is the countermeasure, not a second quote. It does not count toward the ${minCards} PCG cards.</p>`
+    : "";
   const headline = ready
     ? `<strong>PCG pristine = ${times(comp.multiplier)} the same card's PSA 10.</strong> ${cardLines}.`
-    : `<strong>Not enough sales to price this card.</strong> ${comp.cards.length} cards so far, and the page waits for ${minCards}. ${cardLines}. The middle of this thin set is ${times(comp.multiplier)}, and the cards run ${times(comp.low)} to ${times(comp.high)}. That spread is too wide, and none of these is the blister Gengar. The quote on the card stays the CGC formula.`;
+    : `<strong>Not enough PCG sales to price this card.</strong> ${comp.cards.length} PCG cards so far, and the page waits for ${minCards}. ${cardLines}. The middle of this thin set is ${times(comp.multiplier)}, and the cards run ${times(comp.low)} to ${times(comp.high)}. That spread is too wide, and none of these is the blister Gengar. The quote on the card stays the CGC-path formula.`;
   const body = sales
     .map((sale) => {
       const counts = sale.keep ? `<span class="keep">Counts</span>` : `<span class="drop">Leave out</span>`;
@@ -379,6 +391,7 @@ function renderCompReview(review, comp, status) {
     .join("");
   box.innerHTML = `<h3>Reviewed eBay sales</h3>
     <p class="${ready ? "comp-formula" : "comp-wait"}">${headline}</p>
+    ${cgcNote}
     <p class="lead">${note}</p>
     <div class="table-wrap"><table>
       <thead><tr><th>Date</th><th>Card</th><th>Grade</th><th>Listing</th><th>Price</th><th>Use it?</th><th>Why</th></tr></thead>

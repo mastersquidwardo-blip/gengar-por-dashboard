@@ -362,7 +362,7 @@
     "status": "thin",
     "as_of": "2026-09-25",
     "min_cards": 8,
-    "note": "Same-card pairs only. Item price, not delivery. Three cards is not enough to price the Gengar. Add pairs until there are at least 8 cards.",
+    "note": "PCG pairs and CGC pairs are kept apart. CGC is the check, not a substitute for PCG. Item price, not delivery. The PCG sample still needs 8 cards before it can price the Gengar.",
     "sales": [
       {
         "date": null,
@@ -443,6 +443,86 @@
         "url": "",
         "keep": true,
         "note": "21 bids. Delivery was $5.50 extra and is not in the price."
+      },
+      {
+        "date": "2026-01-15",
+        "card": "Celebrations Umbreon Gold Star #17",
+        "grade": "CGC Pristine 10",
+        "title": "CGC Pristine 10 Umbreon Gold Star Holo Celebrations 2021 Pokemon Card #17",
+        "price": 359.1,
+        "url": "https://www.ebay.com/itm/317659907376",
+        "keep": true,
+        "note": "2021 card. Buy It Now, was $399. English Classic Collection."
+      },
+      {
+        "date": "2026-05-29",
+        "card": "Celebrations Umbreon Gold Star #17",
+        "grade": "CGC Pristine 10",
+        "title": "Pokemon Umbreon Gold Star Celebrations Classic Coll. #17 CGC 10 Pristine",
+        "price": 515,
+        "url": "https://www.ebay.com/itm/286917413079",
+        "keep": true,
+        "note": "2021 card. Buy It Now. English Classic Collection."
+      },
+      {
+        "date": "2026-01-04",
+        "card": "Celebrations Umbreon Gold Star #17",
+        "grade": "PSA 10",
+        "title": "2021 Pokemon Celebrations Classic Collection #17 Umbreon Gold Star PSA 10",
+        "price": 274.99,
+        "url": "https://www.ebay.com/itm/116868801095",
+        "keep": true,
+        "note": "2021 card. Buy It Now. English Classic Collection."
+      },
+      {
+        "date": "2026-03-27",
+        "card": "Celebrations Umbreon Gold Star #17",
+        "grade": "PSA 10",
+        "title": "2021 Pokemon Celebrations Classic Coll. Pop Series 5 #17 Umbreon Gold Star PSA 10",
+        "price": 315,
+        "url": "https://www.ebay.com/itm/227272802352",
+        "keep": true,
+        "note": "2021 card. Buy It Now."
+      },
+      {
+        "date": "2026-03-28",
+        "card": "Celebrations Umbreon Gold Star #17",
+        "grade": "PSA 10",
+        "title": "2021 Pokémon Celebrations Umbreon Gold Star 17/17 PSA 10 GEM MINT",
+        "price": 350,
+        "url": "https://www.ebay.com/itm/358378849810",
+        "keep": true,
+        "note": "2021 card. Buy It Now."
+      },
+      {
+        "date": "2026-04-23",
+        "card": "Celebrations Umbreon Gold Star #17",
+        "grade": "PSA 10",
+        "title": "Pokemon Celebrations Umbreon Gold Star Classic Collection Series 17, PSA 10",
+        "price": 450,
+        "url": "https://www.ebay.com/itm/397288607173",
+        "keep": true,
+        "note": "2021 card. Best offer accepted."
+      },
+      {
+        "date": "2026-05-26",
+        "card": "2007 Mysterious Pearl Battle Road prize",
+        "grade": "CGC Pristine 10",
+        "title": "2007 Mysterious Pearl Battle Road Winter Challenge Prize CGC Pristine 10",
+        "price": 13367.53,
+        "url": "https://www.instagram.com/p/DYzl3prlEul/",
+        "keep": true,
+        "note": "Pokecolor auction report, not an eBay listing. About $13,368 from 90,700 CNY. Same report as the PSA 10 below."
+      },
+      {
+        "date": "2026-05-26",
+        "card": "2007 Mysterious Pearl Battle Road prize",
+        "grade": "PSA 10",
+        "title": "2007 Mysterious Pearl Battle Road Winter Challenge Prize PSA 10",
+        "price": 12247.42,
+        "url": "https://www.instagram.com/p/DYzl3prlEul/",
+        "keep": true,
+        "note": "Pokecolor auction report, not an eBay listing. About $12,247 from 83,100 CNY."
       }
     ]
   }

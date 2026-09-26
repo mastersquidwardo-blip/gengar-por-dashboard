@@ -209,3 +209,13 @@ td.hl { color: var(--teal); font-weight: 600; }
   font-size: 14px;
 }
 .comp-wait strong { color: var(--warn); }
+.comp-check {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(155, 109, 255, .1);
+  border: 1px solid rgba(196, 166, 255, .35);
+  color: #efe7ff;
+  font-size: 14px;
+}
+.comp-check strong { color: var(--purple-2); }
