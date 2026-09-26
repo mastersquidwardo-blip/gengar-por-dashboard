@@ -360,9 +360,9 @@
   ],
   "pcg_ebay_comp_review": {
     "status": "thin",
-    "as_of": "2026-09-25",
+    "as_of": "2026-09-26",
     "min_cards": 8,
-    "note": "PCG pairs and CGC pairs are kept apart. CGC is the check, not a substitute for PCG. Item price, not delivery. The PCG sample still needs 8 cards before it can price the Gengar.",
+    "note": "PCG pairs and CGC pairs are kept apart. CGC is the check, not a substitute for PCG. Item price, not delivery. The PCG sample still needs 8 cards before it can price the Gengar. Mega-era review rows await a human keep:true flip.",
     "sales": [
       {
         "date": null,
@@ -523,6 +523,216 @@
         "url": "https://www.instagram.com/p/DYzl3prlEul/",
         "keep": true,
         "note": "Pokecolor auction report, not an eBay listing. About $12,247 from 83,100 CNY."
+      },
+      {
+        "date": "2026-09-20",
+        "card": "Mega Gengar ex #269 Ascended Heroes",
+        "grade": "PCG Pristine 10",
+        "title": "Mega Gengar ex 269 Ascended Heroes PCG Pristine 10 (Premier filter)",
+        "price": 157.5,
+        "url": "https://www.ebay.com/itm/407208532484",
+        "keep": false,
+        "note": "EN Mega-era from Premier Card Grading sold filter. Shipping $6.99 not in price. Four-subgrade label not photo-confirmed (item page redirected). Human must verify Premier 4-subs."
+      },
+      {
+        "date": "2026-09-20",
+        "card": "Mega Diancie ex #282/217 Ascended Heroes",
+        "grade": "PCG Pristine 10",
+        "title": "Mega Diancie ex 282/217 Ascended Heroes PCG Pristine 10 (Premier filter)",
+        "price": 170.0,
+        "url": "https://www.ebay.com/itm/398328258311",
+        "keep": false,
+        "note": "EN Mega-era. Shipping $5.58 not in price. Four-subgrade unverified. Sits above recent CGC Pristine 10s (~$121\u2013$130) \u2014 verify Premier label before keep."
+      },
+      {
+        "date": "2026-08-18",
+        "card": "Mega Gengar ex #284/217 SIR Ascended Heroes",
+        "grade": "PCG Pristine 10",
+        "title": "Mega Gengar ex 284/217 SIR Ascended Heroes PCG Pristine 10 (Premier filter)",
+        "price": 1275.0,
+        "url": "https://www.ebay.com/itm/227467265042",
+        "keep": false,
+        "note": "Best liquidity Mega peg. Free shipping. Four-subgrade unverified. Pair with PSA ~$1935\u2013$2500 and CGC ~$1981\u2013$2200."
+      },
+      {
+        "date": "2026-08-16",
+        "card": "Mega Latias ex #088/063 Mega Symphonia",
+        "grade": "PCG Pristine 10",
+        "title": "Mega Latias ex 088/063 Mega Symphonia PCG Pristine 10 (Premier filter)",
+        "price": 52.0,
+        "url": "https://www.ebay.com/itm/128021577131",
+        "keep": false,
+        "note": "Lower liquidity. Shipping $4.99 not in price. Four-subgrade unverified. CGC/PSA pair search blocked by captcha \u2014 incomplete."
+      },
+      {
+        "date": "2026-07-31",
+        "card": "Mega Gardevoir ex #032",
+        "grade": "PCG Pristine 10",
+        "title": "Mega Gardevoir ex 032 Black Star Promo PCG Pristine 10",
+        "price": 99.0,
+        "url": "https://www.ebay.com/itm/158137642842",
+        "keep": false,
+        "note": "URL'd sold for same card already kept without URL. Shipping $5.58 not in price. Four-subgrade unverified. Not a new unique PCG card until human confirms."
+      },
+      {
+        "date": "2026-09-25",
+        "card": "Mega Gengar ex #284/217 SIR Ascended Heroes",
+        "grade": "PSA 10",
+        "title": "Mega Gengar ex 284/217 SIR Ascended Heroes PSA 10",
+        "price": 1935.0,
+        "url": "https://www.ebay.com/itm/800710424186",
+        "keep": false,
+        "note": "Same EN SIR as PCG $1275. Shipping $6.07 not in price. Rough PCG/PSA \u2248 0.66 vs this sale."
+      },
+      {
+        "date": "2026-09-24",
+        "card": "Mega Gengar ex #284/217 SIR Ascended Heroes",
+        "grade": "PSA 10",
+        "title": "Mega Gengar ex 284/217 SIR Ascended Heroes PSA 10",
+        "price": 2500.0,
+        "url": "https://www.ebay.com/itm/278384148291",
+        "keep": false,
+        "note": "Same EN SIR. Shipping $6.00 not in price. Rough PCG/PSA \u2248 0.51 vs this sale. PSA sold search ~197 results."
+      },
+      {
+        "date": "2026-09-22",
+        "card": "Mega Gengar ex #284/217 SIR Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Gengar ex #284/217 SIR Ascended Heroes CGC Pristine 10",
+        "price": 2200.0,
+        "url": "https://www.ebay.com/itm/188886346349",
+        "keep": false,
+        "note": "Buy It Now; Authenticity Guarantee. Shipping $10.59 not in price. CGC check only."
+      },
+      {
+        "date": "2026-09-07",
+        "card": "Mega Gengar ex #284/217 SIR Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Gengar ex #284/217 SIR Ascended Heroes CGC Pristine 10",
+        "price": 2025.0,
+        "url": "https://www.ebay.com/itm/318806209412",
+        "keep": false,
+        "note": "39 bids; Authenticity Guarantee. Shipping $11.95 not in price. CGC check only."
+      },
+      {
+        "date": "2026-08-29",
+        "card": "Mega Gengar ex #284/217 SIR Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Gengar ex #284/217 SIR Ascended Heroes CGC Pristine 10",
+        "price": 1981.0,
+        "url": "https://www.ebay.com/itm/377444421638",
+        "keep": false,
+        "note": "42 bids; Authenticity Guarantee. Shipping $4.99 not in price. CGC check only."
+      },
+      {
+        "date": "2026-09-26",
+        "card": "Mega Gengar ex #269 Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Gengar ex #269 Ascended Heroes CGC Pristine 10",
+        "price": 155.0,
+        "url": "https://www.ebay.com/itm/366687960933",
+        "keep": false,
+        "note": "Near PCG $157.50 same week. Shipping $5.58 not in price. CGC check only."
+      },
+      {
+        "date": "2026-09-24",
+        "card": "Mega Gengar ex #269 Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Gengar ex #269 Ascended Heroes CGC Pristine 10",
+        "price": 147.5,
+        "url": "https://www.ebay.com/itm/206563439338",
+        "keep": false,
+        "note": "Shipping $5.99 not in price. CGC check only."
+      },
+      {
+        "date": "2026-09-21",
+        "card": "Mega Gengar ex #269 Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Gengar ex #269 Ascended Heroes CGC Pristine 10",
+        "price": 148.5,
+        "url": "https://www.ebay.com/itm/377500296718",
+        "keep": false,
+        "note": "Shipping $4.99 not in price. CGC check only."
+      },
+      {
+        "date": "2026-09-21",
+        "card": "Mega Gengar ex #269 Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Gengar ex #269 Ascended Heroes CGC Pristine 10",
+        "price": 159.27,
+        "url": "https://www.ebay.com/itm/377500274109",
+        "keep": false,
+        "note": "Shipping $4.99 not in price. CGC check only."
+      },
+      {
+        "date": "2026-09-20",
+        "card": "Mega Gengar ex #269 Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Gengar ex #269 Ascended Heroes CGC Pristine 10",
+        "price": 152.5,
+        "url": "https://www.ebay.com/itm/287575674414",
+        "keep": false,
+        "note": "Same date as PCG $157.50 candidate. Shipping $6.99 not in price. CGC check only."
+      },
+      {
+        "date": "2026-09-19",
+        "card": "Mega Gengar ex #269 Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Gengar ex #269 Ascended Heroes CGC Pristine 10",
+        "price": 256.29,
+        "url": "https://www.ebay.com/itm/188936162048",
+        "keep": false,
+        "note": "Best offer accepted; high outlier in recent cluster. Free ship. CGC check only."
+      },
+      {
+        "date": "2026-09-14",
+        "card": "Mega Gengar ex #269 Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Gengar ex #269 Ascended Heroes CGC Pristine 10",
+        "price": 195.0,
+        "url": "https://www.ebay.com/itm/287572032130",
+        "keep": false,
+        "note": "Best offer accepted. Shipping $6.34 not in price. CGC check only."
+      },
+      {
+        "date": "2026-09-06",
+        "card": "Mega Gengar ex #269 Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Gengar ex #269 Ascended Heroes CGC Pristine 10",
+        "price": 178.25,
+        "url": "https://www.ebay.com/itm/168651383560",
+        "keep": false,
+        "note": "Shipping $5.82 not in price. CGC check only."
+      },
+      {
+        "date": "2026-09-01",
+        "card": "Mega Gengar ex #269 Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Gengar ex #269 Ascended Heroes CGC Pristine 10",
+        "price": 225.0,
+        "url": "https://www.ebay.com/itm/206518101758",
+        "keep": false,
+        "note": "Best offer accepted. Shipping $9.45 not in price. CGC check only."
+      },
+      {
+        "date": "2026-09-17",
+        "card": "Mega Diancie ex #282/217 Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Diancie ex #282/217 Ascended Heroes CGC Pristine 10",
+        "price": 129.99,
+        "url": "https://www.ebay.com/itm/267775433396",
+        "keep": false,
+        "note": "Free ship. Note: below candidate PCG $170 \u2014 human should verify Premier 4-subs on PCG row. CGC check only."
+      },
+      {
+        "date": "2026-09-09",
+        "card": "Mega Diancie ex #282/217 Ascended Heroes",
+        "grade": "CGC Pristine 10",
+        "title": "Mega Diancie ex #282/217 Ascended Heroes CGC Pristine 10",
+        "price": 120.99,
+        "url": "https://www.ebay.com/itm/820103715586",
+        "keep": false,
+        "note": "Shipping $5.82 not in price. CGC check only."
       }
     ]
   }
