@@ -41,6 +41,19 @@ python3 -m http.server 8080
 
 `https://mastersquidwardo-blip.github.io/gengar-por-dashboard/`
 
+## Bulk velocity dashboard
+
+Separate page at `bulk-velocity/index.html`. The Gengar POR site at `/` is unchanged.
+
+Dark MS-DOS view of days to sell the listed Near Mint bulk. The listing snapshot is embedded in that page (no extra data files).
+
+```bash
+python3 -m http.server 8080
+# open http://localhost:8080/bulk-velocity/
+```
+
+On GitHub Pages: `https://mastersquidwardo-blip.github.io/gengar-por-dashboard/bulk-velocity/`
+
 ## Data
 
 - `data/por-blister-pcg-model.json` — machine-readable model
