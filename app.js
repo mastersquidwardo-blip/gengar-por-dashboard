@@ -7,107 +7,174 @@ const money = (n) =>
         maximumFractionDigits: 0,
       }).format(Number(n));
 
-const times = (n) => (n == null || Number.isNaN(n) ? "—" : `${n.toFixed(2)}×`);
+function setText(el, value) {
+  if (!el || value == null) return;
+  el.textContent = String(value);
+}
 
-async function main() {
-  const res = await fetch("./data/por-blister-pcg-model.json");
-  if (!res.ok) throw new Error("Price file did not load");
-  const m = await res.json();
+function rangeText(low, high) {
+  const a = money(low);
+  const b = money(high);
+  if (a === "—" || b === "—") return null;
+  return `${a}–${b}`;
+}
 
-  const set151 = m.inputs["151"];
-  const por = m.inputs.POR;
-  const psa = m.psa10_C_POR_extrapolations;
-  const rec = m.recommendation;
+function prettyDate(iso) {
+  if (typeof iso !== "string") return null;
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso.trim());
+  if (!match) return iso;
+  const date = new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])));
+  if (Number.isNaN(date.getTime())) return iso;
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+}
 
-  const psaQuote = psa.immature;
-  const psaFromReverse = psa.via_RH;
-  const cgcQuote = rec.cgcp_blend_immature;
-  const pcgQuote = rec.base_point;
+function cell(text) {
+  const td = document.createElement("td");
+  setText(td, text == null || text === "" ? "—" : text);
+  return td;
+}
 
-  const cosmosOverReverse = set151.psa10_C / set151.psa10_RH_mature;
-  const porReverseOverHolo = por.psa10_RH_guide / por.psa10_H_guide;
-  const set151ReverseOverHolo = set151.psa10_RH_mature / set151.psa10_H;
-  const quoteOverReverse = psaQuote / por.psa10_RH_guide;
-
-  document.getElementById("asOf").textContent = `as of ${m.as_of}`;
-
-  document.getElementById("kpiPsa").textContent = money(psaQuote);
-  document.getElementById("kpiCgc").textContent = money(cgcQuote);
-  document.getElementById("kpiCgcSub").textContent = `151 cosmos CGC pristine in the blend is an estimate, ${money(set151.cgcP_C_estimate)}.`;
-  document.getElementById("kpiPcg").textContent = money(pcgQuote);
-  document.getElementById("kpiPcgSub").textContent =
-    `${times(pcgQuote / psaQuote)} the PSA 10 · ${times(pcgQuote / cgcQuote)} the CGC pristine`;
-
+function renderPicture(rec, refresh) {
+  const body = document.querySelector("#picture tbody");
+  if (!body) return;
+  const band = rangeText(
+    (rec.psa10_band || [])[0] ?? (refresh.psa10_band || [])[0],
+    (rec.psa10_band || [])[1] ?? (refresh.psa10_band || [])[1]
+  );
   const rows = [
-    ["151 reverse", money(set151.psa10_RH_mature), "—", "—"],
-    ["151 cosmos", money(set151.psa10_C), times(cosmosOverReverse), `${money(set151.cgcP_C_estimate)} estimate`],
-    ["This set, reverse", money(por.psa10_RH_guide), `${times(porReverseOverHolo)} its own holo`, money(por.cgcP_RH_sold)],
-    ["Blister cosmos", money(psaQuote), times(quoteOverReverse), money(cgcQuote)],
+    ["Reverse holo times the older cosmos gap", money(rec.psa10_method_reverse_times_older_ratio ?? refresh.psa10_method_reverse_times_older_ratio), ""],
+    ["Planning middle", money(rec.psa10_planning_middle ?? refresh.psa10_planning_middle), "plan"],
+    ["Band", band, ""],
+    ["Older optimistic guess", money(rec.psa10_optimistic_near_ceiling ?? refresh.prior_optimistic_psa), ""],
+    ["GameStop stamped PSA 10", rec.psa10_stamped_ceiling == null && refresh.gamestop_psa10_ceiling == null ? null : `${money(rec.psa10_stamped_ceiling ?? refresh.gamestop_psa10_ceiling)} ceiling`, ""],
   ];
-  document.querySelector("#stack tbody").innerHTML = rows
-    .map(
-      ([name, psaCell, versus, cgc], i) =>
-        `<tr class="${i === 3 ? "quote" : ""}"><td>${name}</td><td>${psaCell}</td><td>${versus}</td><td>${cgc}</td></tr>`
-    )
-    .join("");
+  if (rows.some(([, value]) => value == null || value === "—")) return;
+  body.replaceChildren();
+  rows.forEach(([label, value, className]) => {
+    const tr = document.createElement("tr");
+    if (className) tr.className = className;
+    tr.append(cell(label), cell(value));
+    body.append(tr);
+  });
+}
 
-  document.getElementById("layerNote").textContent =
-    `151's reverse is ${times(set151ReverseOverHolo)} its holo. This set's reverse is ${times(porReverseOverHolo)} its holo. ` +
-    `Copying 151's cosmos-over-reverse gap onto this reverse is ${money(psaFromReverse)}. The PSA quote is ${money(psaQuote)} because the reverse gap here is only partway open. ` +
-    `The PCG dot on the chart is ${money(pcgQuote)}.`;
+function renderAnchors(refresh) {
+  const body = document.querySelector("#anchors tbody");
+  if (!body || !refresh) return;
+  const holoGuide = money(refresh.psa10_H_pricecharting_guide);
+  const holoSold = money(refresh.psa10_H_ebay_median);
+  const reverseGuide = money(refresh.psa10_RH_pricecharting_guide);
+  const reverseSold = money(refresh.psa10_RH_ebay_median);
+  const pristine = rangeText(refresh.cgc_pristine_RH_sold_low, refresh.cgc_pristine_RH_sold_high);
+  const priced = [holoGuide, holoSold, reverseGuide, reverseSold, pristine];
+  if (priced.some((value) => value == null || value === "—")) return;
+  body.replaceChildren();
+  [
+    ["Regular holo PSA 10", holoGuide, holoSold],
+    ["Reverse holo PSA 10", reverseGuide, reverseSold],
+    ["Reverse holo CGC pristine", "—", pristine],
+  ].forEach((row) => {
+    const tr = document.createElement("tr");
+    row.forEach((value) => tr.append(cell(value)));
+    body.append(tr);
+  });
+}
 
+function renderPop(pop) {
+  const body = document.querySelector("#popTable tbody");
+  if (!body || !pop || !Array.isArray(pop.grades) || !pop.grades.length) return;
+  body.replaceChildren();
+  let sum = 0;
+  pop.grades.forEach((grade) => {
+    const count = grade && grade.count;
+    if (typeof count === "number") sum += count;
+    const tr = document.createElement("tr");
+    tr.append(cell(grade && grade.grade), cell(count == null ? null : String(count)), cell(grade && grade.note));
+    body.append(tr);
+  });
+  const total = document.createElement("tr");
+  total.className = "plan";
+  total.append(cell("All grades"), cell(String(sum)), cell("Grades in hand"));
+  body.append(total);
+}
+
+function renderSteps(steps) {
+  const list = document.getElementById("timeline");
+  if (!list || !Array.isArray(steps) || !steps.length) return;
+  const allowed = new Set(["past", "now", "later", "soon"]);
+  list.replaceChildren();
+  steps.forEach((step) => {
+    if (!step) return;
+    const item = document.createElement("li");
+    item.className = `step ${allowed.has(step.mark) ? step.mark : "later"}`;
+    const rail = document.createElement("div");
+    rail.className = "rail";
+    const dot = document.createElement("span");
+    dot.className = "dot";
+    const line = document.createElement("span");
+    line.className = "line";
+    rail.append(dot, line);
+    const body = document.createElement("div");
+    body.className = "step-body";
+    const when = document.createElement("p");
+    when.className = "when";
+    setText(when, step.when || "");
+    const title = document.createElement("h3");
+    setText(title, step.title || "");
+    const copy = document.createElement("p");
+    setText(copy, step.body || "");
+    body.append(when, title, copy);
+    item.append(rail, body);
+    list.append(item);
+  });
+}
+
+function renderChart(rec, refresh) {
+  const canvas = document.getElementById("psaChart");
+  if (!canvas || !window.Chart) return;
+  const bars = [
+    ["Reverse math", rec.psa10_method_reverse_times_older_ratio ?? refresh.psa10_method_reverse_times_older_ratio, "#9b6dff"],
+    ["Planning middle", rec.psa10_planning_middle ?? refresh.psa10_planning_middle, "#ffb454"],
+    ["Older guess", rec.psa10_optimistic_near_ceiling ?? refresh.prior_optimistic_psa, "#6d6280"],
+    ["Stamp ceiling", rec.psa10_stamped_ceiling ?? refresh.gamestop_psa10_ceiling, "#e07a8a"],
+  ].filter(([, value]) => value != null && !Number.isNaN(Number(value)));
+  if (!bars.length) return;
   const tick = { color: "#a89bbf", font: { family: "IBM Plex Sans" } };
   const grid = "rgba(45,35,64,.9)";
-  new Chart(document.getElementById("stackChart"), {
-    type: "line",
+  new window.Chart(canvas, {
+    type: "bar",
     data: {
-      labels: ["151 reverse", "151 cosmos", "This set, reverse", "Blister cosmos"],
+      labels: bars.map(([label]) => label),
       datasets: [
         {
-          label: "PSA 10",
-          data: [set151.psa10_RH_mature, set151.psa10_C, por.psa10_RH_guide, psaQuote],
-          borderColor: "#9b6dff",
-          backgroundColor: "rgba(155,109,255,.12)",
-          fill: false,
-          tension: 0.25,
-          pointRadius: 5,
-          pointBackgroundColor: "#c4a6ff",
-        },
-        {
-          label: "CGC pristine",
-          data: [null, set151.cgcP_C_estimate, por.cgcP_RH_sold, cgcQuote],
-          borderColor: "#4de1c1",
-          backgroundColor: "transparent",
-          fill: false,
-          tension: 0.25,
-          pointRadius: 5,
-          spanGaps: true,
-          pointBackgroundColor: "#4de1c1",
-        },
-        {
-          label: "PCG pristine",
-          data: [null, null, null, pcgQuote],
-          borderColor: "#ffb454",
-          backgroundColor: "#ffb454",
-          showLine: false,
-          pointRadius: 8,
-          pointHoverRadius: 9,
+          data: bars.map(([, value]) => Number(value)),
+          backgroundColor: bars.map(([, , color]) => color),
+          borderRadius: 8,
+          maxBarThickness: 72,
         },
       ],
     },
     options: {
       responsive: true,
-      interaction: { mode: "index", intersect: false },
+      maintainAspectRatio: false,
       plugins: {
-        legend: { labels: { color: "#f3eefc" } },
+        legend: { display: false },
         tooltip: {
-          callbacks: { label: (ctx) => (ctx.parsed.y == null ? "" : `${ctx.dataset.label}: ${money(ctx.parsed.y)}`) },
+          callbacks: {
+            label: (ctx) => (ctx.parsed.y == null ? "" : money(ctx.parsed.y)),
+          },
         },
       },
       scales: {
-        x: { ticks: tick, grid: { color: grid } },
+        x: { ticks: tick, grid: { display: false } },
         y: {
-          ticks: { ...tick, callback: (v) => "$" + Number(v).toLocaleString("en-US") },
+          beginAtZero: true,
+          ticks: { ...tick, callback: (value) => "$" + Number(value).toLocaleString("en-US") },
           grid: { color: grid },
         },
       },
@@ -115,10 +182,56 @@ async function main() {
   });
 }
 
+async function main() {
+  const res = await fetch("./data/por-blister-pcg-model.json?v=20261008");
+  if (!res.ok) throw new Error("Price file did not load");
+  const model = await res.json();
+  const rec = model.recommendation || {};
+  const refresh = model.market_refresh_2026_10_08 || {};
+  const copy = model.plain_language || {};
+  const pop = model.pcg_population || {};
+
+  const checked = copy.checked || prettyDate(model.as_of);
+  setText(document.getElementById("asOf"), checked ? `as of ${checked}` : null);
+  setText(document.getElementById("kpiPsa"), money(rec.psa10_planning_middle ?? refresh.psa10_planning_middle));
+  setText(
+    document.getElementById("kpiPsaBand"),
+    rangeText((rec.psa10_band || refresh.psa10_band || [])[0], (rec.psa10_band || refresh.psa10_band || [])[1])
+  );
+  setText(document.getElementById("kpiPsaSub"), copy.psa_sub);
+  setText(document.getElementById("kpiPcg"), money(rec.base_point ?? refresh.pcg_pristine_soft));
+  setText(document.getElementById("kpiPcgSub"), copy.pcg_sub);
+  setText(document.getElementById("kpiRaw"), rangeText(refresh.raw_nm_low, refresh.raw_nm_high));
+  setText(document.getElementById("kpiRawSub"), copy.raw_sub);
+  setText(document.getElementById("ceilingNote"), copy.stamped_ceiling);
+  setText(document.getElementById("zeroSales"), copy.zero_sales);
+  setText(document.getElementById("methodNote"), copy.method);
+  setText(document.getElementById("chartNote"), copy.chart_note);
+  setText(document.getElementById("anchorIntro"), copy.anchors_intro);
+  setText(document.getElementById("rawNote"), copy.raw_note);
+  setText(document.getElementById("rawRange"), rangeText(refresh.raw_nm_low, refresh.raw_nm_high));
+  setText(document.getElementById("rawListings"), refresh.tcg_listings == null ? null : `about ${Number(refresh.tcg_listings).toLocaleString("en-US")}`);
+  setText(document.getElementById("rawProduct"), refresh.tcg_product_id == null ? null : String(refresh.tcg_product_id));
+  setText(document.getElementById("popSummary"), pop.summary);
+  setText(document.getElementById("popCaveat"), copy.pop_caveat);
+  setText(document.getElementById("timelineIntro"), copy.timeline_intro);
+  setText(document.getElementById("confidenceNote"), copy.confidence);
+
+  renderPicture(rec, refresh);
+  renderAnchors(refresh);
+  renderPop(pop);
+  renderSteps(copy.steps);
+  try {
+    renderChart(rec, refresh);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 main().catch((err) => {
   console.error(err);
-  document.body.insertAdjacentHTML(
-    "afterbegin",
-    `<p class="callout"><strong>The page did not load.</strong> ${err.message}</p>`
-  );
+  const box = document.getElementById("load-error");
+  if (!box) return;
+  box.hidden = false;
+  setText(box, "The latest price notes did not load. The figures on the page are from the last check we wrote down.");
 });

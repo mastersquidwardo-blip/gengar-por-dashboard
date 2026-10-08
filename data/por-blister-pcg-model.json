@@ -1,13 +1,13 @@
 {
-  "as_of": "2026-09-24",
+  "as_of": "2026-10-08",
   "target": "POR Gengar #050/088 blister cosmos holo only \u2014 PCG Pristine 10 (9.5/10/10/10)",
-  "exclusion": "ALL GameStop / EB Games stamped comps VOID for blister target",
-  "void_note": "Prior ~$700\u2013825 GameStop/EB exclusive PSA10 cluster is VOID for blister cosmos. Do not use as blister comps.",
+  "exclusion": "GameStop / EB Games stamped cards stay out of the blister comparison. A stamped PSA 10 is only a ceiling.",
+  "void_note": "A GameStop stamped PSA 10 around $710 is a hard ceiling. It is a different card from the unstamped blister.",
   "flags": {
     "cgc_pristine_151_cosmos": "WEAK \u2014 PriceCharting estimate $240; no hard sold comps on PC page",
-    "psa10_blister_cosmos_POR": "NONE \u2014 no direct comps; all PSA10_C_POR are extrapolations",
+    "psa10_blister_cosmos_POR": "NONE SOLD. Planning middle about $550, band about $490 to $710. The older figure near $686 is an optimistic read near the stamped ceiling.",
     "cgcP_H_POR": "thin guide $69",
-    "grade9_blister_watch": "PC ~$104 \u2014 watch GameStop contamination in grade 9 tabs"
+    "grade9_blister_watch": "Watch for GameStop stamped copies mixed into grade 9 listings."
   },
   "inputs": {
     "151": {
@@ -62,15 +62,20 @@
       ],
       "tcgplayer": {
         "product_id": 709697,
-        "market": 6.51,
+        "market": null,
         "chart_nm": 6.52,
         "chart_change_pct": -63.43,
         "low_sale": 4.29,
         "high_sale": 20.37,
         "total_sold": 1904,
         "avg_daily_sold": 21,
-        "live_listings": 0,
-        "live_sellers": 0
+        "live_listings": 105,
+        "live_sellers": 0,
+        "prior_market_2026_09_16": 6.51,
+        "nm_low": 4,
+        "nm_high": 5,
+        "volume": "heavy",
+        "note": "Near mint about $4 to $5 on October 8, 2026. About 105 listings and heavy volume. The September 24 eBay plain median of $8.83 is stale."
       }
     },
     "blend_weights_cgcp": {
@@ -176,7 +181,7 @@
     "mature_geo": 843.87,
     "via_H": 1315.65,
     "via_RH": 541.27,
-    "note": "No direct blister cosmos PSA10 comps; extrapolated only. GameStop ~700-825 VOID. Confirmed 2026-09-24: 0 graded blister gem sold matches on eBay; GemRate CGC pop 18 (Pristine 3, Gems+ 7, gem rate 38.9%) with still-zero sales."
+    "note": "October 8, 2026 planning middle is about $550, band about $490 to $710. The older figure near $686 is an optimistic read near the stamped ceiling. No graded unstamped blister cosmos has sold. A GameStop stamped PSA 10 around $710 is a ceiling."
   },
   "pcg_scenario_matrix": {
     "immature": {
@@ -215,7 +220,7 @@
     }
   },
   "recommendation": {
-    "primary_scenario": "immature (POR RH/H not yet at 151 mature 2.916\u00d7); raw refreshed 2026-09-24",
+    "primary_scenario": "Planning middle about $550 for an unstamped blister PSA 10. Band about $490 to $710. The older figure near $686 is an optimistic read near the stamped ceiling.",
     "cgcp_blend_immature": 200.18,
     "cgcp_blend_mature_geo": 239.41,
     "base_point": 161.14,
@@ -228,23 +233,32 @@
     "bull_if_mature_asserts": 192.73,
     "k_pcg_base": 0.7,
     "ftm_base": 0.15,
-    "confidence": "LOW\u2013MODERATE",
+    "confidence": "Low to moderate",
     "confidence_rationale": [
-      "Still zero blister cosmos PSA10/CGC10/Pristine solds on eBay (graded searches returned 0)",
-      "GemRate now shows CGC pop 18 with 3 Pristine / 7 Gems+ (38.9% gem rate) but no sales printed",
-      "Raw blister plain median $8.83 (n=27 eBay); swirl median $10 (n=8); TCGPlayer no listings",
-      "PSA ~$686 path flat \u2014 POR H $245.0 / RH $294.01 maturity still clipped (~0.41)",
-      "151 cosmos CGC Pristine $240 remains a weak PriceCharting estimate",
-      "PCG liquidity discount k\u2208{0.55,0.70,0.85} remains judgmental"
+      "Still zero graded unstamped blister cosmos sales. CGC slabs exist, and none of those have sold.",
+      "No public PCG sales for a Perfect Order Gengar. The pristine guess stays soft, about $161. There is no formula price for Flawless.",
+      "PSA 10 holo and reverse holo are close in price, about $245 to $275, depending on the price guide versus recent eBay sales.",
+      "A reverse holo CGC pristine sold around $225 to $250.",
+      "Raw near mint is about $4 to $5 on TCGPlayer, with about 105 listings and heavy volume. The September 24 eBay typical price of $8.83 is stale.",
+      "Top-grade supply is rising. This PCG batch came back with a high share of Pristine and Flawless, and raw copies are plentiful.",
+      "A GameStop stamped PSA 10 around $710 is a ceiling. Stamped cards stay out of the blister comparison."
     ],
     "invalidators": [
-      "First blister-labeled cosmos PSA10 or CGC Pristine solds clear of GS/EB stamps print outside model band",
-      "Hard 151 cosmos CGC Pristine solds replace $240 estimate by >\u00b140%",
-      "POR RH/H PSA10 ratio moves toward \u22652.0 (maturity up) \u2014 shift toward mature_geo path",
-      "PCG Pristine 10 on any POR Gengar finish trades at k outside 0.55\u20130.85 vs CGC Pristine peers",
-      "Blister raw median exits $8\u2013$20 band sustainably",
-      "Contamination: GS/EB stamped comps mislabeled as blister"
-    ]
+      "The first unstamped blister PSA 10, top CGC grade, or PCG pristine sale prints far from these guesses.",
+      "Stamped GameStop or EB Games copies get mixed in with plain blister sales.",
+      "Raw near mint leaves about $4 to $5 and stays at a different price.",
+      "A public PCG sale of a Perfect Order Gengar prints, which would replace the soft pristine guess."
+    ],
+    "psa10_planning_middle": 550,
+    "psa10_band": [
+      490,
+      710
+    ],
+    "psa10_method_reverse_times_older_ratio": 487,
+    "psa10_stamped_ceiling": 710,
+    "psa10_optimistic_near_ceiling": 686,
+    "pcg_public_sales_found": 0,
+    "flawless_formula_priced": false
   },
   "sources_notes": [
     "151 PSA10 medians: prior cleaned analysis (Reg n=29, RH mature May+ n=12, Cosmos n=4)",
@@ -253,7 +267,8 @@
     "151 cosmos CGC Pristine $240 = PC estimate only \u2014 FLAG WEAK",
     "POR blister cosmos: raw med ~$13.05; PSA10 n=0; exclude all GS/EB stamped",
     "POR RH CGC Pristine: use $225 sold 2026-08-03 (not $325 dual ask)",
-    "151 Reg CGC Pristine: guide $399.87; credible solds median $400 (dropped $60 outlier)"
+    "151 Reg CGC Pristine: guide $399.87; credible solds median $400 (dropped $60 outlier)",
+    "2026-10-08 owner-confirmed refresh: eBay PSA 10 holo/reverse medians about $274/$275; PriceCharting guides about $245/$252; GameStop stamped PSA 10 ceiling about $710; TCGPlayer product 709697 near mint about $4 to $5 with about 105 listings; PCG order 5011048 grades back. No new sold prices invented."
   ],
   "market_refresh_2026_09_16": {
     "source": "eBay sold (authenticated scrape) + TCGPlayer product 709697",
@@ -293,7 +308,7 @@
       "number": "050/088",
       "role": "The card this page prices",
       "counts": true,
-      "sold_note": "Raw copies are selling. No PSA 10, CGC 10, or pristine copy has sold as of Sep 24.",
+      "sold_note": "Raw copies are selling. No graded unstamped blister cosmos copy has sold as of October 8, 2026.",
       "gemrate": "https://www.gemrate.com/population-trend?grader=cgc&category=tcg-cards&year=2026&set_name=Pokemon+Por+EN-Perfect+Order&name=Gengar&card_number=050&parallel=Cosmos+Holo",
       "ebay_query": "Pokemon Gengar (050 OR 050/088 OR 50/88) (\"Perfect Order\" OR POR) (cosmos OR blister) -GameStop -\"EB Games\" -stamped -stamp"
     },
@@ -488,7 +503,7 @@
         "date": "2026-03-28",
         "card": "Celebrations Umbreon Gold Star #17",
         "grade": "PSA 10",
-        "title": "2021 Pokémon Celebrations Umbreon Gold Star 17/17 PSA 10 GEM MINT",
+        "title": "2021 Pok\u00e9mon Celebrations Umbreon Gold Star 17/17 PSA 10 GEM MINT",
         "price": 350,
         "url": "https://www.ebay.com/itm/358378849810",
         "keep": true,
@@ -523,6 +538,130 @@
         "url": "https://www.instagram.com/p/DYzl3prlEul/",
         "keep": true,
         "note": "Pokecolor auction report, not an eBay listing. About $12,247 from 83,100 CNY."
+      }
+    ]
+  },
+  "market_refresh_2026_10_08": {
+    "source": "Owner-confirmed October 8, 2026 check. eBay PSA medians, PriceCharting guides, TCGPlayer product 709697, and returned PCG order 5011048.",
+    "ebay_graded_unstamped_blister_cosmos_sold_matches": 0,
+    "cgc_slabs_exist": true,
+    "cgc_unstamped_blister_cosmos_sold_matches": 0,
+    "psa10_H_ebay_median": 274,
+    "psa10_RH_ebay_median": 275,
+    "psa10_H_pricecharting_guide": 245,
+    "psa10_RH_pricecharting_guide": 252,
+    "psa10_anchor_low": 245,
+    "psa10_anchor_high": 275,
+    "cgc_pristine_RH_sold_low": 225,
+    "cgc_pristine_RH_sold_high": 250,
+    "raw_nm_low": 4,
+    "raw_nm_high": 5,
+    "tcg_product_id": 709697,
+    "tcg_listings": 105,
+    "tcg_volume": "heavy",
+    "ebay_plain_median_2026_09_24_stale": 8.83,
+    "psa10_planning_middle": 550,
+    "psa10_band": [
+      490,
+      710
+    ],
+    "psa10_method_reverse_times_older_ratio": 487,
+    "gamestop_psa10_ceiling": 710,
+    "prior_optimistic_psa": 686,
+    "pcg_pristine_soft": 161,
+    "pcg_public_sales_found": 0,
+    "flawless_formula_priced": false,
+    "note": "Planning middle about $550, band about $490 to $710. Reverse holo times the older cosmos-versus-reverse gap is about $487. A GameStop stamped PSA 10 around $710 is a ceiling. The older figure near $686 is an optimistic read near that ceiling. Raw near mint is about $4 to $5. PCG pristine stays a soft $161. Flawless has no formula price."
+  },
+  "pcg_population": {
+    "as_of": "2026-10-08",
+    "order_number": "5011048",
+    "ordered": "2026-09-07",
+    "received": "2026-09-11",
+    "grades_back": "2026-10-08",
+    "card": "Perfect Order Gengar #050 blister cosmos",
+    "submitted": 20,
+    "entire_public_population": true,
+    "sold_prices": false,
+    "flawless_formula_priced": false,
+    "summary": "Order #5011048. 20 blister cosmos cards of #050. Ordered September 7, received about September 11, and the grades came back about October 8, 2026. This looks like the entire public PCG population for this card.",
+    "grades": [
+      {
+        "grade": "Flawless 10",
+        "count": 1,
+        "cert": "000348838",
+        "note": "Certificate #000348838. No formula price."
+      },
+      {
+        "grade": "Pristine 10",
+        "count": 8,
+        "cert": null,
+        "note": "Soft guess on this page. No public sale yet."
+      },
+      {
+        "grade": "Gem Mint 10",
+        "count": 6,
+        "cert": null,
+        "note": null
+      },
+      {
+        "grade": "Gem Mint 9.5",
+        "count": 4,
+        "cert": null,
+        "note": null
+      },
+      {
+        "grade": "Near Mint 7",
+        "count": 1,
+        "cert": null,
+        "note": null
+      }
+    ]
+  },
+  "plain_language": {
+    "checked": "October 8, 2026",
+    "psa_sub": "Planning middle for an unstamped blister. No graded blister sale yet.",
+    "pcg_sub": "Soft guess. No public sale yet. Flawless has no formula price.",
+    "raw_sub": "Near mint on TCGPlayer. About 105 listings.",
+    "zero_sales": "Still zero graded unstamped blister cosmos cards have sold. CGC has graded some copies, and none of those have sold. The cosmos price stays a projection from Perfect Order holo and reverse holo sales that have actually happened.",
+    "method": "Take this set\u2019s reverse holo and multiply by how much more an older, similar cosmos sold for versus its own reverse. That lands near $487, just under the low end of the band. The planning middle is about $550, inside about $490 to $710.",
+    "stamped_ceiling": "A GameStop stamped PSA 10 around $710 is a hard ceiling. Stamped GameStop and EB Games cards are a different product, so they stay out of the blister comparison. The older guess near $686 is an optimistic read, up near that ceiling.",
+    "anchors_intro": "The regular holo and the reverse holo are close to the same PSA 10 price, about $245 to $275. The low end is the price guide. The high end is recent eBay sales. A reverse holo CGC pristine sold around $225 to $250.",
+    "raw_note": "Near mint raw blister copies are about $4 to $5 on TCGPlayer, product 709697, with about 105 listings and heavy volume. The September 24 eBay typical price of $8.83 is stale.",
+    "pop_caveat": "No public PCG sale has shown up for a Perfect Order Gengar, so the pristine guess stays soft, about $161. The Flawless 10 is listed so you can see it came back. There is no formula price for it.",
+    "chart_note": "The planning middle sits between the reverse-holo math and the stamped ceiling.",
+    "confidence": "Confidence is still low to moderate, until the first blister gem sale prints. Top-grade supply is rising: this batch came back with a high share of Pristine and Flawless, and raw copies are flooding the market. That extra supply can press on prices.",
+    "timeline_intro": "Grades do not all show up the week the packs hit shelves. Here is where this card stands.",
+    "steps": [
+      {
+        "when": "July 17, 2026",
+        "title": "The packs hit shelves",
+        "body": "Pitch Black blisters went on sale. This card is the Perfect Order Gengar #050 cosmos holo from those blister packs.",
+        "mark": "past"
+      },
+      {
+        "when": "September 7, 2026",
+        "title": "The grading order was placed",
+        "body": "Order #5011048 went in for 20 blister cosmos copies of #050.",
+        "mark": "past"
+      },
+      {
+        "when": "About September 11, 2026",
+        "title": "PCG received the cards",
+        "body": "The 20 cards were received for grading.",
+        "mark": "past"
+      },
+      {
+        "when": "October 8, 2026",
+        "title": "The grades came back",
+        "body": "You are here. The batch came back as one Flawless 10 (certificate #000348838), eight Pristine 10s, six Gem Mint 10s, four Gem Mint 9.5s, and one Near Mint 7. This looks like the entire public PCG population for this card. The counts are the grades in hand. No graded unstamped blister cosmos has sold, and no public PCG sale of a Perfect Order Gengar has shown up.",
+        "mark": "now"
+      },
+      {
+        "when": "November into December 2026",
+        "title": "PSA 10s often start to show",
+        "body": "The first PSA 10s for a new set often take about four to five months after the packs hit shelves. From mid-July, that is roughly November into December.",
+        "mark": "later"
       }
     ]
   }
