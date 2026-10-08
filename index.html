@@ -3,76 +3,267 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>POR Gengar #050 — PCG pristine</title>
-  <meta name="description" content="PCG pristine price for the Perfect Order Gengar blister cosmos, set against a PSA 10 and a CGC pristine." />
+  <title>Gengar blister price guesses</title>
+  <meta name="description" content="Plain-English price guesses for the Perfect Order Gengar #050 blister cosmos. PSA 10 planning middle about $550, band about $490 to $710. PCG pristine is a soft $161. Ungraded near mint is about $4 to $5." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260926b" />
+  <link rel="stylesheet" href="styles.css?v=20261008" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
-  <script src="app.js?v=20260926b" defer></script>
+  <script src="app.js?v=20261008" defer></script>
 </head>
 <body>
   <div class="bg-glow" aria-hidden="true"></div>
+  <p id="load-error" class="callout" hidden></p>
+
   <header class="top">
     <div class="brand">
       <span class="ghost">◈</span>
       <div>
         <p class="eyebrow">Gengar 050 · Perfect Order · blister cosmos</p>
-        <h1>PCG pristine</h1>
+        <h1>Blister price guesses</h1>
       </div>
     </div>
     <div class="meta">
       <span class="pill">Blister only</span>
-      <span class="pill warn">Store stamp excluded</span>
-      <span class="pill muted" id="asOf">as of —</span>
+      <span class="pill warn">Store stamp is a ceiling</span>
+      <span class="pill muted" id="asOf">as of October 8, 2026</span>
     </div>
   </header>
 
   <section class="kpis">
-    <article class="kpi">
-      <p class="label">PSA 10</p>
-      <p class="value" id="kpiPsa">—</p>
-      <p class="sub" id="kpiPsaSub">Guess. No blister sale yet.</p>
-    </article>
-    <article class="kpi">
-      <p class="label">CGC pristine</p>
-      <p class="value" id="kpiCgc">—</p>
-      <p class="sub" id="kpiCgcSub">Guess.</p>
-    </article>
     <article class="kpi primary">
-      <p class="label">PCG pristine</p>
-      <p class="value" id="kpiPcg">—</p>
-      <p class="sub" id="kpiPcgSub">—</p>
+      <p class="label">PSA 10</p>
+      <p class="value" id="kpiPsa">$550</p>
+      <p class="band" id="kpiPsaBand">$490–$710</p>
+      <p class="sub" id="kpiPsaSub">Planning middle for an unstamped blister. No graded blister sale yet.</p>
     </article>
+    <article class="kpi">
+      <p class="label">PCG pristine</p>
+      <p class="value" id="kpiPcg">$161</p>
+      <p class="sub" id="kpiPcgSub">Soft guess. No public sale yet. Flawless has no formula price.</p>
+    </article>
+    <article class="kpi">
+      <p class="label">Ungraded</p>
+      <p class="value" id="kpiRaw">$4–$5</p>
+      <p class="sub" id="kpiRawSub">Near mint on TCGPlayer. About 105 listings.</p>
+    </article>
+  </section>
+
+  <section class="note" id="ceilingNote">
+    <strong>A GameStop stamped PSA 10 around $710 is a hard ceiling.</strong>
+    Stamped GameStop and EB Games cards are a different product, so they stay out of the blister comparison. The older guess near $686 is an optimistic read, up near that ceiling.
   </section>
 
   <section class="panel">
     <div class="panel-head">
-      <h2>Reverse against cosmos</h2>
-      <p>Two layers. On 151, cosmos versus reverse. On this set, the reverse versus its holo, then the same cosmos gap applied to that reverse.</p>
+      <h2>The blister PSA 10</h2>
+      <p id="zeroSales">Still zero graded unstamped blister cosmos cards have sold. CGC has graded some copies, and none of those have sold. The cosmos price stays a projection from Perfect Order holo and reverse holo sales that have actually happened.</p>
     </div>
+    <p class="copy" id="methodNote">Take this set’s reverse holo and multiply by how much more an older, similar cosmos sold for versus its own reverse. That lands near $487, just under the low end of the band. The planning middle is about $550, inside about $490 to $710.</p>
     <div class="table-wrap">
-      <table id="stack">
+      <table id="picture">
         <thead>
           <tr>
-            <th>Card</th>
-            <th>PSA 10</th>
-            <th>Versus its reverse</th>
-            <th>CGC pristine</th>
+            <th>Read</th>
+            <th>Price</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          <tr>
+            <td>Reverse holo times the older cosmos gap</td>
+            <td>$487</td>
+          </tr>
+          <tr class="plan">
+            <td>Planning middle</td>
+            <td>$550</td>
+          </tr>
+          <tr>
+            <td>Band</td>
+            <td>$490–$710</td>
+          </tr>
+          <tr>
+            <td>Older optimistic guess</td>
+            <td>$686</td>
+          </tr>
+          <tr>
+            <td>GameStop stamped PSA 10</td>
+            <td>$710 ceiling</td>
+          </tr>
+        </tbody>
       </table>
     </div>
-    <p class="legend-note" id="layerNote"></p>
+    <p class="legend-note" id="chartNote">The planning middle sits between the reverse-holo math and the stamped ceiling.</p>
     <div class="chart-wrap">
-      <canvas id="stackChart" height="120"></canvas>
+      <canvas id="psaChart" aria-label="Bar chart of the blister PSA 10 reads"></canvas>
     </div>
   </section>
 
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Sales we can point to</h2>
+      <p id="anchorIntro">The regular holo and the reverse holo are close to the same PSA 10 price, about $245 to $275. The low end is the price guide. The high end is recent eBay sales. A reverse holo CGC pristine sold around $225 to $250.</p>
+    </div>
+    <div class="table-wrap">
+      <table id="anchors">
+        <thead>
+          <tr>
+            <th>Card</th>
+            <th>Price guide</th>
+            <th>Recent sales</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Regular holo PSA 10</td>
+            <td>$245</td>
+            <td>$274</td>
+          </tr>
+          <tr>
+            <td>Reverse holo PSA 10</td>
+            <td>$252</td>
+            <td>$275</td>
+          </tr>
+          <tr>
+            <td>Reverse holo CGC pristine</td>
+            <td>—</td>
+            <td>$225–$250</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Ungraded copies</h2>
+      <p id="rawNote">Near mint raw blister copies are about $4 to $5 on TCGPlayer, product 709697, with about 105 listings and heavy volume. The September 24 eBay typical price of $8.83 is stale.</p>
+    </div>
+    <div class="stats">
+      <div>
+        <span>Near mint</span>
+        <strong id="rawRange">$4–$5</strong>
+      </div>
+      <div>
+        <span>Listings</span>
+        <strong id="rawListings">about 105</strong>
+      </div>
+      <div>
+        <span>TCGPlayer product</span>
+        <strong id="rawProduct">709697</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>PCG grades that came back</h2>
+      <p id="popSummary">Order #5011048. 20 blister cosmos cards of #050. Ordered September 7, received about September 11, and the grades came back about October 8, 2026. This looks like the entire public PCG population for this card.</p>
+    </div>
+    <div class="table-wrap">
+      <table id="popTable">
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>How many</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Flawless 10</td>
+            <td>1</td>
+            <td>Certificate #000348838. No formula price.</td>
+          </tr>
+          <tr>
+            <td>Pristine 10</td>
+            <td>8</td>
+            <td>Soft guess on this page. No public sale yet.</td>
+          </tr>
+          <tr>
+            <td>Gem Mint 10</td>
+            <td>6</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Gem Mint 9.5</td>
+            <td>4</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Near Mint 7</td>
+            <td>1</td>
+            <td>—</td>
+          </tr>
+          <tr class="plan">
+            <td>All grades</td>
+            <td>20</td>
+            <td>Grades in hand</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="legend-note" id="popCaveat">No public PCG sale has shown up for a Perfect Order Gengar, so the pristine guess stays soft, about $161. The Flawless 10 is listed so you can see it came back. There is no formula price for it.</p>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>What has happened so far</h2>
+      <p id="timelineIntro">Grades do not all show up the week the packs hit shelves. Here is where this card stands.</p>
+    </div>
+    <ol class="steps" id="timeline">
+      <li class="step past">
+        <div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="step-body">
+          <p class="when">July 17, 2026</p>
+          <h3>The packs hit shelves</h3>
+          <p>Pitch Black blisters went on sale. This card is the Perfect Order Gengar #050 cosmos holo from those blister packs.</p>
+        </div>
+      </li>
+      <li class="step past">
+        <div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="step-body">
+          <p class="when">September 7, 2026</p>
+          <h3>The grading order was placed</h3>
+          <p>Order #5011048 went in for 20 blister cosmos copies of #050.</p>
+        </div>
+      </li>
+      <li class="step past">
+        <div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="step-body">
+          <p class="when">About September 11, 2026</p>
+          <h3>PCG received the cards</h3>
+          <p>The 20 cards were received for grading.</p>
+        </div>
+      </li>
+      <li class="step now">
+        <div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="step-body">
+          <p class="when">October 8, 2026</p>
+          <h3>The grades came back</h3>
+          <p>You are here. The batch came back as one Flawless 10 (certificate #000348838), eight Pristine 10s, six Gem Mint 10s, four Gem Mint 9.5s, and one Near Mint 7. This looks like the entire public PCG population for this card. The counts are the grades in hand. No graded unstamped blister cosmos has sold, and no public PCG sale of a Perfect Order Gengar has shown up.</p>
+        </div>
+      </li>
+      <li class="step later">
+        <div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="step-body">
+          <p class="when">November into December 2026</p>
+          <h3>PSA 10s often start to show</h3>
+          <p>The first PSA 10s for a new set often take about four to five months after the packs hit shelves. From mid-July, that is roughly November into December.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>How sure we are</h2>
+    </div>
+    <p class="copy" id="confidenceNote">Confidence is still low to moderate, until the first blister gem sale prints. Top-grade supply is rising: this batch came back with a high share of Pristine and Flawless, and raw copies are flooding the market. That extra supply can press on prices.</p>
+  </section>
+
   <footer class="foot">
-    <p>Blister cosmos only. A real blister PSA 10, CGC pristine, or PCG pristine sale replaces this guess. Not financial advice.</p>
+    <p>Checked October 8, 2026. A real unstamped blister sale replaces these guesses. Not financial advice.</p>
   </footer>
 </body>
 </html>
