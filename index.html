@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gengar blister price guesses</title>
-  <meta name="description" content="Plain-English price guesses for the Perfect Order Gengar #050 blister cosmos. PSA 10 planning middle about $550, band about $490 to $710. PCG pristine is a soft $161. Ungraded near mint is about $4 to $5." />
+  <meta name="description" content="Plain-English price notes for the Perfect Order Gengar #050 blister cosmos. PSA 10 planning middle about $550. A PCG Gem Mint 10 sold for $76. PCG Pristine planning range about $150 to $175." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20261008" />
+  <link rel="stylesheet" href="styles.css?v=20261021" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
-  <script src="app.js?v=20261008" defer></script>
+  <script src="app.js?v=20261021" defer></script>
 </head>
 <body>
   <div class="bg-glow" aria-hidden="true"></div>
@@ -27,7 +27,7 @@
     <div class="meta">
       <span class="pill">Blister only</span>
       <span class="pill warn">Store stamp is a ceiling</span>
-      <span class="pill muted" id="asOf">as of October 8, 2026</span>
+      <span class="pill muted" id="asOf">as of October 21, 2026</span>
     </div>
   </header>
 
@@ -36,12 +36,12 @@
       <p class="label">PSA 10</p>
       <p class="value" id="kpiPsa">$550</p>
       <p class="band" id="kpiPsaBand">$490–$710</p>
-      <p class="sub" id="kpiPsaSub">Planning middle for an unstamped blister. No graded blister sale yet.</p>
+      <p class="sub" id="kpiPsaSub">Planning middle for an unstamped blister. No PSA blister cosmos sale yet.</p>
     </article>
     <article class="kpi">
       <p class="label">PCG pristine</p>
-      <p class="value" id="kpiPcg">$161</p>
-      <p class="sub" id="kpiPcgSub">Soft guess. No public sale yet. Flawless has no formula price.</p>
+      <p class="value" id="kpiPcg">$150–$175</p>
+      <p class="sub" id="kpiPcgSub">Planning range. A Gem Mint 10 sold for $76, so a price over $200 looks steep.</p>
     </article>
     <article class="kpi">
       <p class="label">Ungraded</p>
@@ -58,7 +58,7 @@
   <section class="panel">
     <div class="panel-head">
       <h2>The blister PSA 10</h2>
-      <p id="zeroSales">Still zero graded unstamped blister cosmos cards have sold. CGC has graded some copies, and none of those have sold. The cosmos price stays a projection from Perfect Order holo and reverse holo sales that have actually happened.</p>
+      <p id="zeroSales">No PSA blister cosmos has sold yet, so the $550 figure stays a planning middle. CGC has graded some copies, and none of those have sold. The PSA number is still a projection from Perfect Order holo and reverse holo sales.</p>
     </div>
     <p class="copy" id="methodNote">Take this set’s reverse holo and multiply by how much more an older, similar cosmos sold for versus its own reverse. That lands near $487, just under the low end of the band. The planning middle is about $550, inside about $490 to $710.</p>
     <div class="table-wrap">
@@ -155,11 +155,29 @@
     </div>
   </section>
 
-  <section class="panel">
+  <section class="panel" id="pcgPanel">
     <div class="panel-head">
-      <h2>PCG grades that came back</h2>
+      <h2>PCG grades and the first sale</h2>
       <p id="popSummary">Order #5011048. 20 blister cosmos cards of #050. Ordered September 7, received about September 11, and the grades came back about October 8, 2026. This looks like the entire public PCG population for this card.</p>
     </div>
+    <p class="copy" id="firstSale">A PCG Gem Mint 10 sold on eBay for $76 around October 21, 2026. That is the first public sale of this card in a PCG slab. It is a real sale, not a guess.</p>
+    <div class="stats">
+      <div class="sale">
+        <span>Gem Mint 10 sold</span>
+        <strong id="gem10Sale">$76</strong>
+      </div>
+      <div class="ask">
+        <span>Gem Mint 9.5 asking</span>
+        <strong id="gem95Ask">$55</strong>
+      </div>
+      <div>
+        <span>Cost per slab</span>
+        <strong id="slabCost">$29</strong>
+      </div>
+    </div>
+    <p class="legend-note" id="askNote">Gem Mint 9.5 copies are listed on eBay at $55. That is an asking price. None have sold. The Pristine 10s and the Flawless 10 are not listed yet.</p>
+    <p class="legend-note" id="costNote">Each slab cost the owner about $29: $20 to grade it and $9 for the card.</p>
+    <p class="copy" id="pristineNote">The Pristine 10 planning range is about $150 to $175, anchored to that $76 sale. A Gem Mint 10 at $76 makes a price over $200 look steep for Pristines.</p>
     <div class="table-wrap">
       <table id="popTable">
         <thead>
@@ -173,22 +191,22 @@
           <tr>
             <td>Flawless 10</td>
             <td>1</td>
-            <td>Certificate #000348838. No formula price.</td>
+            <td>Certificate #000348838. One of one. No formula price. Not listed yet.</td>
           </tr>
           <tr>
             <td>Pristine 10</td>
             <td>8</td>
-            <td>Soft guess on this page. No public sale yet.</td>
+            <td>Planning range about $150 to $175. Not listed yet.</td>
           </tr>
-          <tr>
+          <tr class="sale">
             <td>Gem Mint 10</td>
             <td>6</td>
-            <td>—</td>
+            <td>One sold on eBay for $76 around October 21. First public sale.</td>
           </tr>
-          <tr>
+          <tr class="ask">
             <td>Gem Mint 9.5</td>
             <td>4</td>
-            <td>—</td>
+            <td>Listed on eBay at $55. Asking price. No sale yet.</td>
           </tr>
           <tr>
             <td>Near Mint 7</td>
@@ -203,7 +221,7 @@
         </tbody>
       </table>
     </div>
-    <p class="legend-note" id="popCaveat">No public PCG sale has shown up for a Perfect Order Gengar, so the pristine guess stays soft, about $161. The Flawless 10 is listed so you can see it came back. There is no formula price for it.</p>
+    <p class="legend-note" id="popCaveat">The Flawless 10 is a one-of-one. There is no formula price for it, and it is not listed yet.</p>
   </section>
 
   <section class="panel">
@@ -236,12 +254,20 @@
           <p>The 20 cards were received for grading.</p>
         </div>
       </li>
-      <li class="step now">
+      <li class="step past">
         <div class="rail"><span class="dot"></span><span class="line"></span></div>
         <div class="step-body">
           <p class="when">October 8, 2026</p>
           <h3>The grades came back</h3>
-          <p>You are here. The batch came back as one Flawless 10 (certificate #000348838), eight Pristine 10s, six Gem Mint 10s, four Gem Mint 9.5s, and one Near Mint 7. This looks like the entire public PCG population for this card. The counts are the grades in hand. No graded unstamped blister cosmos has sold, and no public PCG sale of a Perfect Order Gengar has shown up.</p>
+          <p>The batch came back as one Flawless 10 (certificate #000348838), eight Pristine 10s, six Gem Mint 10s, four Gem Mint 9.5s, and one Near Mint 7. This looks like the entire public PCG population for this card.</p>
+        </div>
+      </li>
+      <li class="step now">
+        <div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="step-body">
+          <p class="when">October 21, 2026</p>
+          <h3>The first PCG sale</h3>
+          <p>You are here. Slabs from this batch are listed. A PCG Gem Mint 10 sold on eBay for $76. That is the first public sale of a Perfect Order Gengar blister cosmos in a PCG slab. Gem Mint 9.5 copies are listed at $55. That price is an ask, and none have sold. The Pristine 10s and the Flawless 10 are not listed yet.</p>
         </div>
       </li>
       <li class="step later">
@@ -259,11 +285,11 @@
     <div class="panel-head">
       <h2>How sure we are</h2>
     </div>
-    <p class="copy" id="confidenceNote">Confidence is still low to moderate, until the first blister gem sale prints. Top-grade supply is rising: this batch came back with a high share of Pristine and Flawless, and raw copies are flooding the market. That extra supply can press on prices.</p>
+    <p class="copy" id="confidenceNote">The PSA 10 guess is still low to moderate, because no PSA blister cosmos has sold. The Pristine range is a plan built from the $76 Gem Mint 10 sale. Those Pristine copies are not listed yet, so the range can move when one sells. More top grades and plenty of raw copies can still press on prices.</p>
   </section>
 
   <footer class="foot">
-    <p>Checked October 8, 2026. A real unstamped blister sale replaces these guesses. Not financial advice.</p>
+    <p id="checkedLine">Checked October 21, 2026. No PSA blister cosmos has sold yet. Not financial advice.</p>
   </footer>
 </body>
 </html>

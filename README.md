@@ -4,12 +4,21 @@ Plain-English page for the **2026 Perfect Order Gengar `#050/088` cosmos holo fr
 
 Stamped GameStop and EB Games cards stay out of the blister comparison. A stamped PSA 10 is only a ceiling.
 
+## October 21, 2026
+
+- **First PCG sale:** a Gem Mint 10 sold on eBay for **$76**. That is a real sale, not a guess.
+- **Gem Mint 9.5** copies are listed at **$55**. That is an asking price. None have sold.
+- **Pristine 10s** and the **Flawless 10** are not listed yet. Flawless is a one-of-one and has no formula price.
+- **PCG Pristine** planning range is about **$150 to $175**. A Gem Mint 10 at $76 makes a price over $200 look steep.
+- **Cost** is about **$29** a slab: $20 to grade it and $9 for the card.
+- **PSA 10** stays a planning middle of **about $550**, band **about $490 to $710**. No PSA blister cosmos sale yet.
+
 ## October 8, 2026
 
 - **PSA 10:** planning middle **about $550**, band **about $490 to $710**. The reverse-holo math lands near **$487**. A GameStop stamped PSA 10 around **$710** is a hard ceiling. The older **$686** figure is an optimistic read, up near that ceiling.
-- **Still zero** graded unstamped blister cosmos sales. CGC slabs exist. None have sold.
+- At that check, no graded unstamped blister cosmos had sold. CGC slabs existed. None had sold.
 - **Ungraded near mint:** about **$4 to $5** on TCGPlayer (product 709697, about 105 listings, heavy volume). The September 24 eBay typical price of $8.83 is stale.
-- **PCG pristine:** a soft **about $161**. No public PCG sale yet. There is no formula price for Flawless.
+- **PCG pristine** was a soft **about $161** before the Gem Mint 10 sale.
 - **Grades back:** order #5011048, 20 blister cosmos cards. Flawless 10 ×1 (certificate #000348838), Pristine 10 ×8, Gem Mint 10 ×6, Gem Mint 9.5 ×4, Near Mint 7 ×1. This looks like the entire public PCG population. Ordered September 7, received about September 11, grades back about October 8.
 - **Confidence:** still low to moderate, until the first blister gem sale prints. A high share of Pristine and Flawless, plus a flood of raw copies, adds supply pressure.
 

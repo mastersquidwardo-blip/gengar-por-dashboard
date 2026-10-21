@@ -12,6 +12,12 @@ function setText(el, value) {
   el.textContent = String(value);
 }
 
+function setMoney(el, value) {
+  const text = money(value);
+  if (text === "—") return;
+  setText(el, text);
+}
+
 function rangeText(low, high) {
   const a = money(low);
   const b = money(high);
@@ -88,12 +94,14 @@ function renderAnchors(refresh) {
 function renderPop(pop) {
   const body = document.querySelector("#popTable tbody");
   if (!body || !pop || !Array.isArray(pop.grades) || !pop.grades.length) return;
+  const rowKind = new Set(["sale", "ask"]);
   body.replaceChildren();
   let sum = 0;
   pop.grades.forEach((grade) => {
     const count = grade && grade.count;
     if (typeof count === "number") sum += count;
     const tr = document.createElement("tr");
+    if (grade && rowKind.has(grade.kind)) tr.className = grade.kind;
     tr.append(cell(grade && grade.grade), cell(count == null ? null : String(count)), cell(grade && grade.note));
     body.append(tr);
   });
@@ -183,11 +191,12 @@ function renderChart(rec, refresh) {
 }
 
 async function main() {
-  const res = await fetch("./data/por-blister-pcg-model.json?v=20261008");
+  const res = await fetch("./data/por-blister-pcg-model.json?v=20261021");
   if (!res.ok) throw new Error("Price file did not load");
   const model = await res.json();
   const rec = model.recommendation || {};
   const refresh = model.market_refresh_2026_10_08 || {};
+  const latest = model.market_refresh_2026_10_21 || {};
   const copy = model.plain_language || {};
   const pop = model.pcg_population || {};
 
@@ -199,7 +208,10 @@ async function main() {
     rangeText((rec.psa10_band || refresh.psa10_band || [])[0], (rec.psa10_band || refresh.psa10_band || [])[1])
   );
   setText(document.getElementById("kpiPsaSub"), copy.psa_sub);
-  setText(document.getElementById("kpiPcg"), money(rec.base_point ?? refresh.pcg_pristine_soft));
+  setText(
+    document.getElementById("kpiPcg"),
+    rangeText(rec.pcg_pristine_low ?? latest.pcg_pristine_low, rec.pcg_pristine_high ?? latest.pcg_pristine_high)
+  );
   setText(document.getElementById("kpiPcgSub"), copy.pcg_sub);
   setText(document.getElementById("kpiRaw"), rangeText(refresh.raw_nm_low, refresh.raw_nm_high));
   setText(document.getElementById("kpiRawSub"), copy.raw_sub);
@@ -213,9 +225,17 @@ async function main() {
   setText(document.getElementById("rawListings"), refresh.tcg_listings == null ? null : `about ${Number(refresh.tcg_listings).toLocaleString("en-US")}`);
   setText(document.getElementById("rawProduct"), refresh.tcg_product_id == null ? null : String(refresh.tcg_product_id));
   setText(document.getElementById("popSummary"), pop.summary);
+  setText(document.getElementById("firstSale"), copy.first_sale);
+  setMoney(document.getElementById("gem10Sale"), latest.gem_mint_10_sold);
+  setMoney(document.getElementById("gem95Ask"), latest.gem_mint_95_ask);
+  setMoney(document.getElementById("slabCost"), latest.cost_per_slab);
+  setText(document.getElementById("askNote"), copy.ask_note);
+  setText(document.getElementById("costNote"), copy.cost_note);
+  setText(document.getElementById("pristineNote"), copy.pristine_note);
   setText(document.getElementById("popCaveat"), copy.pop_caveat);
   setText(document.getElementById("timelineIntro"), copy.timeline_intro);
   setText(document.getElementById("confidenceNote"), copy.confidence);
+  setText(document.getElementById("checkedLine"), copy.footer);
 
   renderPicture(rec, refresh);
   renderAnchors(refresh);
