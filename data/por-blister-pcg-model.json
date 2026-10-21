@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-08",
+  "as_of": "2026-10-21",
   "target": "POR Gengar #050/088 blister cosmos holo only \u2014 PCG Pristine 10 (9.5/10/10/10)",
   "exclusion": "GameStop / EB Games stamped cards stay out of the blister comparison. A stamped PSA 10 is only a ceiling.",
   "void_note": "A GameStop stamped PSA 10 around $710 is a hard ceiling. It is a different card from the unstamped blister.",
@@ -220,7 +220,7 @@
     }
   },
   "recommendation": {
-    "primary_scenario": "Planning middle about $550 for an unstamped blister PSA 10. Band about $490 to $710. The older figure near $686 is an optimistic read near the stamped ceiling.",
+    "primary_scenario": "PSA 10 planning middle about $550, band about $490 to $710. No PSA blister cosmos sale yet. PCG Pristine 10 planning range about $150 to $175, anchored to a Gem Mint 10 that sold for $76.",
     "cgcp_blend_immature": 200.18,
     "cgcp_blend_mature_geo": 239.41,
     "base_point": 161.14,
@@ -235,19 +235,20 @@
     "ftm_base": 0.15,
     "confidence": "Low to moderate",
     "confidence_rationale": [
-      "Still zero graded unstamped blister cosmos sales. CGC slabs exist, and none of those have sold.",
-      "No public PCG sales for a Perfect Order Gengar. The pristine guess stays soft, about $161. There is no formula price for Flawless.",
-      "PSA 10 holo and reverse holo are close in price, about $245 to $275, depending on the price guide versus recent eBay sales.",
-      "A reverse holo CGC pristine sold around $225 to $250.",
-      "Raw near mint is about $4 to $5 on TCGPlayer, with about 105 listings and heavy volume. The September 24 eBay typical price of $8.83 is stale.",
-      "Top-grade supply is rising. This PCG batch came back with a high share of Pristine and Flawless, and raw copies are plentiful.",
+      "No PSA blister cosmos sale yet. The PSA 10 planning middle stays about $550, band about $490 to $710.",
+      "A PCG Gem Mint 10 sold on eBay for $76 around October 21, 2026. That is the first public PCG sale for this card.",
+      "Gem Mint 9.5 copies are listed at $55. That is an asking price. None have sold.",
+      "Pristine 10s and the Flawless 10 are not listed yet. The Pristine planning range is about $150 to $175. A Gem Mint 10 at $76 makes a price over $200 look steep.",
+      "The Flawless 10 is a one-of-one. There is no formula price for it.",
+      "Each slab cost the owner about $29: $20 to grade it and $9 for the card.",
+      "CGC slabs of the unstamped blister cosmos exist, and none of those have sold.",
       "A GameStop stamped PSA 10 around $710 is a ceiling. Stamped cards stay out of the blister comparison."
     ],
     "invalidators": [
-      "The first unstamped blister PSA 10, top CGC grade, or PCG pristine sale prints far from these guesses.",
+      "An unstamped blister PSA 10 sale prints far from about $490 to $710.",
+      "A PCG Pristine 10 sale prints far from about $150 to $175.",
       "Stamped GameStop or EB Games copies get mixed in with plain blister sales.",
-      "Raw near mint leaves about $4 to $5 and stays at a different price.",
-      "A public PCG sale of a Perfect Order Gengar prints, which would replace the soft pristine guess."
+      "Raw near mint leaves about $4 to $5 and stays at a different price."
     ],
     "psa10_planning_middle": 550,
     "psa10_band": [
@@ -257,8 +258,13 @@
     "psa10_method_reverse_times_older_ratio": 487,
     "psa10_stamped_ceiling": 710,
     "psa10_optimistic_near_ceiling": 686,
-    "pcg_public_sales_found": 0,
-    "flawless_formula_priced": false
+    "pcg_public_sales_found": 1,
+    "flawless_formula_priced": false,
+    "pcg_pristine_low": 150,
+    "pcg_pristine_high": 175,
+    "pcg_pristine_prior_soft": 161.14,
+    "base_point_note": "October 8 soft guess of about $161. The October 21 quote is the Pristine planning range, about $150 to $175.",
+    "flawless_one_of_one": true
   },
   "sources_notes": [
     "151 PSA10 medians: prior cleaned analysis (Reg n=29, RH mature May+ n=12, Cosmos n=4)",
@@ -268,7 +274,8 @@
     "POR blister cosmos: raw med ~$13.05; PSA10 n=0; exclude all GS/EB stamped",
     "POR RH CGC Pristine: use $225 sold 2026-08-03 (not $325 dual ask)",
     "151 Reg CGC Pristine: guide $399.87; credible solds median $400 (dropped $60 outlier)",
-    "2026-10-08 owner-confirmed refresh: eBay PSA 10 holo/reverse medians about $274/$275; PriceCharting guides about $245/$252; GameStop stamped PSA 10 ceiling about $710; TCGPlayer product 709697 near mint about $4 to $5 with about 105 listings; PCG order 5011048 grades back. No new sold prices invented."
+    "2026-10-08 owner-confirmed refresh: eBay PSA 10 holo/reverse medians about $274/$275; PriceCharting guides about $245/$252; GameStop stamped PSA 10 ceiling about $710; TCGPlayer product 709697 near mint about $4 to $5 with about 105 listings; PCG order 5011048 grades back. No new sold prices invented.",
+    "2026-10-21 owner report: first public PCG sale is the owner's Gem Mint 10 at $76 on eBay. Gem Mint 9.5 copies are listed at $55 with no sales. Pristine 10s and the Flawless 10 are not listed. Slab cost about $29 ($20 grading plus $9 for the card). PSA blister cosmos sales still zero."
   ],
   "market_refresh_2026_09_16": {
     "source": "eBay sold (authenticated scrape) + TCGPlayer product 709697",
@@ -308,7 +315,7 @@
       "number": "050/088",
       "role": "The card this page prices",
       "counts": true,
-      "sold_note": "Raw copies are selling. No graded unstamped blister cosmos copy has sold as of October 8, 2026.",
+      "sold_note": "A PCG Gem Mint 10 sold for $76 around October 21, 2026. No PSA blister cosmos sale yet.",
       "gemrate": "https://www.gemrate.com/population-trend?grader=cgc&category=tcg-cards&year=2026&set_name=Pokemon+Por+EN-Perfect+Order&name=Gengar&card_number=050&parallel=Cosmos+Holo",
       "ebay_query": "Pokemon Gengar (050 OR 050/088 OR 50/88) (\"Perfect Order\" OR POR) (cosmos OR blister) -GameStop -\"EB Games\" -stamped -stamp"
     },
@@ -574,7 +581,7 @@
     "note": "Planning middle about $550, band about $490 to $710. Reverse holo times the older cosmos-versus-reverse gap is about $487. A GameStop stamped PSA 10 around $710 is a ceiling. The older figure near $686 is an optimistic read near that ceiling. Raw near mint is about $4 to $5. PCG pristine stays a soft $161. Flawless has no formula price."
   },
   "pcg_population": {
-    "as_of": "2026-10-08",
+    "as_of": "2026-10-21",
     "order_number": "5011048",
     "ordered": "2026-09-07",
     "received": "2026-09-11",
@@ -590,47 +597,54 @@
         "grade": "Flawless 10",
         "count": 1,
         "cert": "000348838",
-        "note": "Certificate #000348838. No formula price."
+        "note": "Certificate #000348838. One of one. No formula price. Not listed yet.",
+        "kind": null
       },
       {
         "grade": "Pristine 10",
         "count": 8,
         "cert": null,
-        "note": "Soft guess on this page. No public sale yet."
+        "note": "Planning range about $150 to $175. Not listed yet.",
+        "kind": null
       },
       {
         "grade": "Gem Mint 10",
         "count": 6,
         "cert": null,
-        "note": null
+        "note": "One sold on eBay for $76 around October 21. First public sale.",
+        "kind": "sale"
       },
       {
         "grade": "Gem Mint 9.5",
         "count": 4,
         "cert": null,
-        "note": null
+        "note": "Listed on eBay at $55. Asking price. No sale yet.",
+        "kind": "ask"
       },
       {
         "grade": "Near Mint 7",
         "count": 1,
         "cert": null,
-        "note": null
+        "note": null,
+        "kind": null
       }
-    ]
+    ],
+    "has_public_sale": true,
+    "flawless_one_of_one": true
   },
   "plain_language": {
-    "checked": "October 8, 2026",
-    "psa_sub": "Planning middle for an unstamped blister. No graded blister sale yet.",
-    "pcg_sub": "Soft guess. No public sale yet. Flawless has no formula price.",
+    "checked": "October 21, 2026",
+    "psa_sub": "Planning middle for an unstamped blister. No PSA blister cosmos sale yet.",
+    "pcg_sub": "Planning range. A Gem Mint 10 sold for $76, so a price over $200 looks steep.",
     "raw_sub": "Near mint on TCGPlayer. About 105 listings.",
-    "zero_sales": "Still zero graded unstamped blister cosmos cards have sold. CGC has graded some copies, and none of those have sold. The cosmos price stays a projection from Perfect Order holo and reverse holo sales that have actually happened.",
+    "zero_sales": "No PSA blister cosmos has sold yet, so the $550 figure stays a planning middle. CGC has graded some copies, and none of those have sold. The PSA number is still a projection from Perfect Order holo and reverse holo sales.",
     "method": "Take this set\u2019s reverse holo and multiply by how much more an older, similar cosmos sold for versus its own reverse. That lands near $487, just under the low end of the band. The planning middle is about $550, inside about $490 to $710.",
     "stamped_ceiling": "A GameStop stamped PSA 10 around $710 is a hard ceiling. Stamped GameStop and EB Games cards are a different product, so they stay out of the blister comparison. The older guess near $686 is an optimistic read, up near that ceiling.",
     "anchors_intro": "The regular holo and the reverse holo are close to the same PSA 10 price, about $245 to $275. The low end is the price guide. The high end is recent eBay sales. A reverse holo CGC pristine sold around $225 to $250.",
     "raw_note": "Near mint raw blister copies are about $4 to $5 on TCGPlayer, product 709697, with about 105 listings and heavy volume. The September 24 eBay typical price of $8.83 is stale.",
-    "pop_caveat": "No public PCG sale has shown up for a Perfect Order Gengar, so the pristine guess stays soft, about $161. The Flawless 10 is listed so you can see it came back. There is no formula price for it.",
+    "pop_caveat": "The Flawless 10 is a one-of-one. There is no formula price for it, and it is not listed yet.",
     "chart_note": "The planning middle sits between the reverse-holo math and the stamped ceiling.",
-    "confidence": "Confidence is still low to moderate, until the first blister gem sale prints. Top-grade supply is rising: this batch came back with a high share of Pristine and Flawless, and raw copies are flooding the market. That extra supply can press on prices.",
+    "confidence": "The PSA 10 guess is still low to moderate, because no PSA blister cosmos has sold. The Pristine range is a plan built from the $76 Gem Mint 10 sale. Those Pristine copies are not listed yet, so the range can move when one sells. More top grades and plenty of raw copies can still press on prices.",
     "timeline_intro": "Grades do not all show up the week the packs hit shelves. Here is where this card stands.",
     "steps": [
       {
@@ -654,7 +668,13 @@
       {
         "when": "October 8, 2026",
         "title": "The grades came back",
-        "body": "You are here. The batch came back as one Flawless 10 (certificate #000348838), eight Pristine 10s, six Gem Mint 10s, four Gem Mint 9.5s, and one Near Mint 7. This looks like the entire public PCG population for this card. The counts are the grades in hand. No graded unstamped blister cosmos has sold, and no public PCG sale of a Perfect Order Gengar has shown up.",
+        "body": "The batch came back as one Flawless 10 (certificate #000348838), eight Pristine 10s, six Gem Mint 10s, four Gem Mint 9.5s, and one Near Mint 7. This looks like the entire public PCG population for this card.",
+        "mark": "past"
+      },
+      {
+        "when": "October 21, 2026",
+        "title": "The first PCG sale",
+        "body": "You are here. Slabs from this batch are listed. A PCG Gem Mint 10 sold on eBay for $76. That is the first public sale of a Perfect Order Gengar blister cosmos in a PCG slab. Gem Mint 9.5 copies are listed at $55. That price is an ask, and none have sold. The Pristine 10s and the Flawless 10 are not listed yet.",
         "mark": "now"
       },
       {
@@ -663,6 +683,39 @@
         "body": "The first PSA 10s for a new set often take about four to five months after the packs hit shelves. From mid-July, that is roughly November into December.",
         "mark": "later"
       }
-    ]
+    ],
+    "footer": "Checked October 21, 2026. No PSA blister cosmos has sold yet. Not financial advice.",
+    "first_sale": "A PCG Gem Mint 10 sold on eBay for $76 around October 21, 2026. That is the first public sale of this card in a PCG slab. It is a real sale, not a guess.",
+    "ask_note": "Gem Mint 9.5 copies are listed on eBay at $55. That is an asking price. None have sold. The Pristine 10s and the Flawless 10 are not listed yet.",
+    "cost_note": "Each slab cost the owner about $29: $20 to grade it and $9 for the card.",
+    "pristine_note": "The Pristine 10 planning range is about $150 to $175, anchored to that $76 sale. A Gem Mint 10 at $76 makes a price over $200 look steep for Pristines."
+  },
+  "market_refresh_2026_10_21": {
+    "source": "Owner report around October 21, 2026. First public PCG sale and current eBay asks for Perfect Order Gengar #050 blister cosmos.",
+    "psa_blister_cosmos_sales": 0,
+    "psa10_planning_middle": 550,
+    "psa10_band": [
+      490,
+      710
+    ],
+    "gem_mint_10_sold": 76,
+    "gem_mint_10_sold_on": "2026-10-21",
+    "gem_mint_10_sold_venue": "eBay",
+    "gem_mint_10_sold_note": "Owner's slab. First public PCG sale for this card. A real sale, not a guess.",
+    "gem_mint_95_ask": 55,
+    "gem_mint_95_ask_venue": "eBay",
+    "gem_mint_95_sales": 0,
+    "gem_mint_95_note": "Listed at $55. Asking price. No sales yet.",
+    "pristine_10_listed": false,
+    "flawless_10_listed": false,
+    "pcg_pristine_low": 150,
+    "pcg_pristine_high": 175,
+    "pcg_pristine_prior_soft": 161,
+    "flawless_formula_priced": false,
+    "flawless_one_of_one": true,
+    "cost_per_slab": 29,
+    "cost_grading": 20,
+    "cost_card": 9,
+    "note": "Re-anchor Pristine on the $76 Gem Mint 10 sale. Planning range about $150 to $175. A price over $200 looks steep next to $76. PSA 10 stays about $550, band about $490 to $710, with no PSA blister cosmos sale yet."
   }
 }
